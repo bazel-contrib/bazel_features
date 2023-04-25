@@ -1,0 +1,4 @@
+load(":test.bzl", "run_test")
+
+run_test(name = "tests")
+
