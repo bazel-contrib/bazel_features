@@ -28,22 +28,16 @@ def parse_version(v):
 BAZEL_VERSION = parse_version(version)
 
 def le(v):
-    return lambda: BAZEL_VERSION <= parse_version(v)
+    return BAZEL_VERSION <= parse_version(v)
 
 def lt(v):
-    return lambda: BAZEL_VERSION < parse_version(v)
+    return BAZEL_VERSION < parse_version(v)
 
 def ne(v):
-    return lambda: BAZEL_VERSION != parse_version(v)
+    return BAZEL_VERSION != parse_version(v)
 
 def ge(v):
-    return lambda: BAZEL_VERSION >= parse_version(v)
+    return BAZEL_VERSION >= parse_version(v)
 
 def gt(v):
-    return lambda: BAZEL_VERSION > parse_version(v)
-
-def all_(*args):
-    return lambda: all([cond() for cond in args])
-
-def any_(*args):
-    return lambda: any([cond() for cond in args])
+    return BAZEL_VERSION > parse_version(v)

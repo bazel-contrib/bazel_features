@@ -13,7 +13,7 @@ def run_test(name):
     _assert_lt("6.0.0", "")
 
     # a smoke test on the actual current Bazel version
-    if not ge("0.0.1")():
+    if not ge("0.0.1"):
         fail("somehow the current Bazel version (parsed: '{}') is not >= 0.0.1".format(BAZEL_VERSION))
 
     native.filegroup(name = name)
