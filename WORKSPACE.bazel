@@ -1,0 +1,5 @@
+workspace(name = "bazel_features")
+
+load(":deps.bzl", "bazel_features_deps")
+
+bazel_features_deps()
