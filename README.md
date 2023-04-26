@@ -5,7 +5,7 @@ Use this to determine the availability of a Bazel feature in your ruleset. It wo
 
 ```starlark
 load("@bazel_features//:features.bzl", "bazel_features")
-if bazel_features.toolchains.has_optional_toolchains():
+if bazel_features.toolchains.has_optional_toolchains:
     # Do something
 ```
 
