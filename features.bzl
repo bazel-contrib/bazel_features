@@ -1,5 +1,11 @@
 load("//private:util.bzl", "ge", "gt", "le", "lt", "ne")
 
+_bzlmod = struct(
+    # Whether --enable_bzlmod is set, and thus, whether str(Label(...)) produces canonical label
+    # literals (i.e., "@@repo//pkg:file").
+    is_enabled = str(Label("//:invalid")).startswith("@@")
+)
+
 _rules = struct(
     # Whether TemplateDict#add_joined allows the map_each callback to return a list of strings (#17306)
     template_dict_map_each_can_return_list = ge("6.1.0"),
@@ -12,6 +18,7 @@ _toolchains = struct(
 )
 
 bazel_features = struct(
+    bzlmod = _bzlmod,
     rules = _rules,
     toolchains = _toolchains,
 )
