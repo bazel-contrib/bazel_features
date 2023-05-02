@@ -1,10 +1,10 @@
 load("@bazel_features_globals//:globals.bzl", "globals")
 load("//private:util.bzl", "ge", "gt", "le", "lt", "ne")
 
-_bzlmod = struct(
+_repos = struct(
     # Whether --enable_bzlmod is set, and thus, whether str(Label(...)) produces canonical label
     # literals (i.e., "@@repo//pkg:file").
-    is_enabled = str(Label("//:invalid")).startswith("@@")
+    is_bzlmod_enabled = str(Label("//:invalid")).startswith("@@")
 )
 
 _rules = struct(
@@ -19,8 +19,8 @@ _toolchains = struct(
 )
 
 bazel_features = struct(
-    bzlmod = _bzlmod,
     globals = globals,
+    repos = _repos,
     rules = _rules,
     toolchains = _toolchains,
 )
