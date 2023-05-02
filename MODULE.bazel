@@ -5,4 +5,4 @@ module(
 
 version = use_extension("//private:extensions.bzl", "version_extension")
 
-use_repo(version, "bazel_version")
+use_repo(version, "bazel_features_globals", "bazel_features_version")

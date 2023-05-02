@@ -1,3 +1,4 @@
+load("@bazel_features_globals//:globals.bzl", "globals")
 load("//private:util.bzl", "ge", "gt", "le", "lt", "ne")
 
 _bzlmod = struct(
@@ -19,6 +20,7 @@ _toolchains = struct(
 
 bazel_features = struct(
     bzlmod = _bzlmod,
+    globals = globals,
     rules = _rules,
     toolchains = _toolchains,
 )

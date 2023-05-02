@@ -1,4 +1,6 @@
-load("//private:util.bzl", "BAZEL_VERSION", "ge", "parse_version")
+load("//private:util.bzl", "BAZEL_VERSION", "ge")
+load("//private:parse.bzl", "parse_version")
+load("//:features.bzl", "bazel_features")
 
 def _assert_lt(a, b):
     if parse_version(a) >= parse_version(b):
@@ -15,5 +17,11 @@ def run_test(name):
     # a smoke test on the actual current Bazel version
     if not ge("0.0.1"):
         fail("somehow the current Bazel version (parsed: '{}') is not >= 0.0.1".format(BAZEL_VERSION))
+
+    if not bazel_features.globals.DefaultInfo == DefaultInfo:
+        fail("bazel_features.globals.DefaultInfo != DefaultInfo")
+
+    if not bazel_features.globals.__TestingOnly_NeverAvailable == None:
+        fail("bazel_features.globals.__TestingOnly_NeverAvailable != None")
 
     native.filegroup(name = name)
