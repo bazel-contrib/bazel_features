@@ -1,5 +1,7 @@
+"""Defines all the features this module supports detecting."""
+
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge", "gt", "le", "lt", "ne")
+load("//private:util.bzl", "ge")
 
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
@@ -11,7 +13,7 @@ _cc = struct(
 _external_deps = struct(
     # Whether --enable_bzlmod is set, and thus, whether str(Label(...)) produces canonical label
     # literals (i.e., "@@repo//pkg:file").
-    is_bzlmod_enabled = str(Label("//:invalid")).startswith("@@")
+    is_bzlmod_enabled = str(Label("//:invalid")).startswith("@@"),
 )
 
 _rules = struct(
@@ -29,7 +31,6 @@ bazel_features = struct(
     cc = _cc,
     external_deps = _external_deps,
     globals = globals,
-    repos = _repos,
     rules = _rules,
     toolchains = _toolchains,
 )
