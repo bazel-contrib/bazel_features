@@ -9,5 +9,11 @@ if bazel_features.toolchains.has_optional_toolchains:
     # Do something
 ```
 
-The `features.bzl` file contains the list of features.
+The [`features.bzl`](features.bzl) file contains the list of features.
 
+### Accessing globals
+
+References to global Starlark symbols that do not exist cause load time errors, which means that their availability in Bazel cannot be tested via a regular feature.
+Instead, use `bazel_features.globals.<symbol>`, which is `<symbol>` if the symbol is available and `None` else.
+
+See [`globals.bzl`](private/globals.bzl) for the list of symbols that can be checked for in this way.
