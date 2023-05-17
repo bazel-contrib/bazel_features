@@ -1,0 +1,17 @@
+load("//:features.bzl", "bazel_features")
+load("//private:common_settings.bzl", "bool_flag")
+
+# Add a config indicating that bzlmod is enabled so select()
+# can be used with target_compatible_with to skip bzlmod-incompatible targets.
+config_setting(
+    name = "bzlmod_enabled",
+    flag_values = {
+        ":flag_enable_bzlmod": "true",
+    },
+)
+
+# Detect the --enable_bzlmod flag value.
+bool_flag(
+    name = "flag_enable_bzlmod",
+    build_setting_default = bazel_features.external_deps.is_bzlmod_enabled,
+)
