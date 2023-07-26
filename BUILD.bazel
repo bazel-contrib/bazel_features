@@ -1,0 +1,5 @@
+# Alias the target since the globals repo isn't visible to dependent workspaces.
+alias(
+    name = "allow_unresolved_symlinks",
+    actual = "@bazel_features_globals//:allow_unresolved_symlinks",
+)
