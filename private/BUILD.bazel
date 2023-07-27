@@ -1,0 +1,5 @@
+filegroup(
+    name = "bzl_files",
+    srcs = glob(["*.bzl"]),
+    visibility = ["//visibility:public"],
+)
