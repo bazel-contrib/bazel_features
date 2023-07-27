@@ -3,13 +3,6 @@
 load("@bazel_features_globals//:globals.bzl", "globals")
 load("//private:util.bzl", "ge")
 
-_allow_unresolved_symlinks_flag = (
-    # This flag was renamed in https://github.com/bazelbuild/bazel/pull/18313
-    "allow_unresolved_symlinks" 
-    if ge("7.0.0")
-    else "experimental_allow_unresolved_symlinks"
-)
-
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
     # on find_cpp_toolchain are available (#17308).
@@ -21,6 +14,15 @@ _external_deps = struct(
     # Whether --enable_bzlmod is set, and thus, whether str(Label(...)) produces canonical label
     # literals (i.e., "@@repo//pkg:file").
     is_bzlmod_enabled = str(Label("//:invalid")).startswith("@@"),
+)
+
+_flags = struct(
+    # This flag was renamed in https://github.com/bazelbuild/bazel/pull/18313
+    allow_unresolved_symlinks = (
+        "allow_unresolved_symlinks" 
+        if ge("7.0.0")
+        else "experimental_allow_unresolved_symlinks"
+    )
 )
 
 _rules = struct(
@@ -35,9 +37,9 @@ _toolchains = struct(
 )
 
 bazel_features = struct(
-    allow_unresolved_symlinks_flag = _allow_unresolved_symlinks_flag,
     cc = _cc,
     external_deps = _external_deps,
+    flags = _flags,
     globals = globals,
     rules = _rules,
     toolchains = _toolchains,
