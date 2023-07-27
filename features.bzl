@@ -16,6 +16,15 @@ _external_deps = struct(
     is_bzlmod_enabled = str(Label("//:invalid")).startswith("@@"),
 )
 
+_flags = struct(
+    # This flag was renamed in https://github.com/bazelbuild/bazel/pull/18313
+    allow_unresolved_symlinks = (
+        "allow_unresolved_symlinks" 
+        if ge("7.0.0-pre.20230628.2")
+        else "experimental_allow_unresolved_symlinks"
+    )
+)
+
 _rules = struct(
     # Whether TemplateDict#add_joined allows the map_each callback to return a list of strings (#17306)
     template_dict_map_each_can_return_list = ge("6.1.0"),
@@ -30,6 +39,7 @@ _toolchains = struct(
 bazel_features = struct(
     cc = _cc,
     external_deps = _external_deps,
+    flags = _flags,
     globals = globals,
     rules = _rules,
     toolchains = _toolchains,
