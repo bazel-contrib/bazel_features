@@ -20,7 +20,7 @@ _flags = struct(
     # This flag was renamed in https://github.com/bazelbuild/bazel/pull/18313
     allow_unresolved_symlinks = (
         "allow_unresolved_symlinks" 
-        if ge("7.0.0")
+        if ge("7.0.0-pre.20230628.2")
         else "experimental_allow_unresolved_symlinks"
     )
 )
