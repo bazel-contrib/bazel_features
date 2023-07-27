@@ -1,7 +1,7 @@
 load("//private:parse.bzl", "parse_version")
 
 def _globals_repo_impl(rctx):
-    rctx.file("BUILD.bazel")
+    rctx.file("BUILD.bazel", "exports_files([\"globals.bzl\"])")
 
     bazel_version = parse_version(native.bazel_version)
 

@@ -1,0 +1,11 @@
+filegroup(
+    name = "bzl_files",
+    srcs = glob(["*.bzl"]) + [
+        "//private:bzl_files",
+        "@bazel_features_globals//:globals.bzl",
+        "@bazel_features_version//:version.bzl",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(["features.bzl"])
