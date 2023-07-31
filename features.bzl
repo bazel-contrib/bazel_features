@@ -10,7 +10,7 @@ _cc = struct(
     find_cpp_toolchain_has_mandatory_param = ge("6.1.0"),
     # Note: In Bazel 6.3 the `grep_includes` parameter is optional and a no-op in the cc_common API
     # In future Bazel versions it will be removed altogether.
-    remove_grep_includes_from_api = ge("6.3.0"),
+    grep_includes_is_optional = ge("6.3.0"),
 )
 
 _external_deps = struct(
