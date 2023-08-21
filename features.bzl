@@ -11,6 +11,9 @@ _cc = struct(
     # Note: In Bazel 6.3 the `grep_includes` parameter is optional and a no-op in the cc_common API
     # In future Bazel versions it will be removed altogether.
     grep_includes_is_optional = ge("6.3.0"),
+    # From 7.0.0-pre.20230724.1 on `ObjcProvider` no longer contains linking info
+    # https://github.com/bazelbuild/bazel/commit/426f2254669f62b7d332094a0af6d4dc6200ad51
+    objc_linking_info_migrated = ge("7.0.0-pre.20230724.1"),
 )
 
 _external_deps = struct(
@@ -22,7 +25,7 @@ _external_deps = struct(
 _flags = struct(
     # This flag was renamed in https://github.com/bazelbuild/bazel/pull/18313
     allow_unresolved_symlinks = (
-        "allow_unresolved_symlinks" 
+        "allow_unresolved_symlinks"
         if ge("7.0.0-pre.20230628.2")
         else "experimental_allow_unresolved_symlinks"
     )
