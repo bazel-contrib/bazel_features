@@ -20,6 +20,9 @@ _external_deps = struct(
     # Whether --enable_bzlmod is set, and thus, whether str(Label(...)) produces canonical label
     # literals (i.e., "@@repo//pkg:file").
     is_bzlmod_enabled = str(Label("//:invalid")).startswith("@@"),
+    # Whether module_extension has the os_dependent and arch_dependent parameters.
+    # https://github.com/bazelbuild/bazel/commit/970b9dda7cd215a29d73a53871500bc4e2dc6142
+    module_extension_has_os_arch_dependent = ge("6.4.0"),
 )
 
 _flags = struct(
