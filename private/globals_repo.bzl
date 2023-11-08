@@ -19,6 +19,8 @@ def _globals_repo_impl(rctx):
 
 globals_repo = repository_rule(
     _globals_repo_impl,
+    # Force reruns on server restarts to keep native.bazel_version up-to-date.
+    local = True,
     attrs = {
         "globals": attr.string_dict(
             mandatory = True,
