@@ -37,6 +37,9 @@ _flags = struct(
 _rules = struct(
     # Whether TemplateDict#add_joined allows the map_each callback to return a list of strings (#17306)
     template_dict_map_each_can_return_list = ge("6.1.0"),
+
+    # Whether repository_ctx#download has the block parameter, allowing parallel downloads
+    has_parallel_download = ge("7.1.0")
 )
 
 _toolchains = struct(
