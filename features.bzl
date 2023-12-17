@@ -23,6 +23,8 @@ _external_deps = struct(
     # Whether module_extension has the os_dependent and arch_dependent parameters.
     # https://github.com/bazelbuild/bazel/commit/970b9dda7cd215a29d73a53871500bc4e2dc6142
     module_extension_has_os_arch_dependent = ge("6.4.0"),
+    # Whether repository_ctx#download has the block parameter, allowing parallel downloads (#19674)
+    download_has_block_param = ge("7.1.0")
 )
 
 _flags = struct(
