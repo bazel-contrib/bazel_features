@@ -20,3 +20,24 @@ bzl_library(
         "@bazel_features_version//:version",
     ],
 )
+
+bzl_library(
+    name = "globals",
+    srcs = ["globals.bzl"],
+    visibility = ["//:__subpackages__"],
+)
+
+bzl_library(
+    name = "globals_repo",
+    srcs = ["globals_repo.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        ":parse",
+    ],
+)
+
+bzl_library(
+    name = "version_repo",
+    srcs = ["version_repo.bzl"],
+    visibility = ["//:__subpackages__"],
+)
