@@ -26,16 +26,14 @@ _external_deps = struct(
     # Whether repository_ctx#download has the block parameter, allowing parallel downloads (#19674)
     download_has_block_param = ge("7.1.0"),
     # Whether repository_ctx#download has the headers parameter, allowing arbitrary headers (#17829)
-    download_has_headers_param = ge("7.1.0")
+    download_has_headers_param = ge("7.1.0"),
 )
 
 _flags = struct(
     # This flag was renamed in https://github.com/bazelbuild/bazel/pull/18313
     allow_unresolved_symlinks = (
-        "allow_unresolved_symlinks"
-        if ge("7.0.0-pre.20230628.2")
-        else "experimental_allow_unresolved_symlinks"
-    )
+        "allow_unresolved_symlinks" if ge("7.0.0-pre.20230628.2") else "experimental_allow_unresolved_symlinks"
+    ),
 )
 
 _rules = struct(

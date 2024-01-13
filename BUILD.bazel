@@ -1,3 +1,5 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
 filegroup(
     name = "bzl_files",
     srcs = glob(["*.bzl"]) + [
@@ -9,3 +11,12 @@ filegroup(
 )
 
 exports_files(["features.bzl"])
+
+bzl_library(
+    name = "features",
+    srcs = ["features.bzl"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@bazel_features_globals//:globals",
+    ],
+)

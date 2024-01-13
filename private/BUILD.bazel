@@ -1,5 +1,21 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
 filegroup(
     name = "bzl_files",
     srcs = glob(["*.bzl"]),
     visibility = ["//visibility:public"],
+)
+
+bzl_library(
+    name = "parse",
+    srcs = ["parse.bzl"],
+)
+
+bzl_library(
+    name = "util",
+    srcs = ["util.bzl"],
+    deps = [
+        ":parse",
+        "@bazel_features_version//:version",
+    ],
 )
