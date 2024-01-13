@@ -17,6 +17,7 @@ bzl_library(
     srcs = ["features.bzl"],
     visibility = ["//visibility:public"],
     deps = [
+        "//private:util",
         "@bazel_features_globals//:globals",
     ],
 )

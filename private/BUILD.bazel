@@ -14,6 +14,7 @@ bzl_library(
 bzl_library(
     name = "util",
     srcs = ["util.bzl"],
+    visibility = ["//:__subpackages__"],
     deps = [
         ":parse",
         "@bazel_features_version//:version",
