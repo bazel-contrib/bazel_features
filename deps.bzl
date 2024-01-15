@@ -4,7 +4,7 @@ load("//private:globals.bzl", "GLOBALS")
 load("//private:globals_repo.bzl", "globals_repo")
 load("//private:version_repo.bzl", "version_repo")
 
-def bazel_features_deps(legacy = False):
+def bazel_features_deps(legacy = True):
     version_repo(name = "bazel_features_version")
     globals_repo(
         name = "bazel_features_globals",
