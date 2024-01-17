@@ -49,6 +49,12 @@ _toolchains = struct(
     has_optional_toolchains = ge("6.0.0"),
 )
 
+_stardoc = struct(
+    # Whether Stardoc can document module extensions.
+    # https://github.com/bazelbuild/stardoc/issues/192
+    supports_module_extensions = ge("7.0.0"),
+)
+
 bazel_features = struct(
     cc = _cc,
     external_deps = _external_deps,
@@ -56,4 +62,5 @@ bazel_features = struct(
     globals = globals,
     rules = _rules,
     toolchains = _toolchains,
+    stardoc = _stardoc,
 )
