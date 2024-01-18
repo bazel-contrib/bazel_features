@@ -14,6 +14,8 @@ _cc = struct(
     # From 7.0.0-pre.20230724.1 on `ObjcProvider` no longer contains linking info
     # https://github.com/bazelbuild/bazel/commit/426f2254669f62b7d332094a0af6d4dc6200ad51
     objc_linking_info_migrated = ge("7.0.0-pre.20230724.1"),
+    # https://github.com/bazelbuild/bazel/commit/c8c3878088cb706b820d506a682e1156b7e8c64d
+    swift_fragment_removed = ge("8.0.0-pre.20240101.1"),
 )
 
 _external_deps = struct(
