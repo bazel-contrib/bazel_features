@@ -41,3 +41,23 @@ bzl_library(
     srcs = ["version_repo.bzl"],
     visibility = ["//:__subpackages__"],
 )
+
+bzl_library(
+    name = "repos",
+    srcs = ["repos.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        ":globals",
+        ":globals_repo",
+        ":version_repo",
+    ],
+)
+
+bzl_library(
+    name = "extensions",
+    srcs = ["extensions.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        ":repos",
+    ],
+)

@@ -1,8 +1,6 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
-load("//private:globals.bzl", "GLOBALS")
-load("//private:globals_repo.bzl", "globals_repo")
-load("//private:version_repo.bzl", "version_repo")
+load("//private:repos.bzl", "bazel_features_repos")
 
 def bazel_features_deps():
     bazel_features_repos()
@@ -14,11 +12,4 @@ def bazel_features_deps():
             "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
             "https://github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
         ],
-    )
-
-def bazel_features_repos():
-    version_repo(name = "bazel_features_version")
-    globals_repo(
-        name = "bazel_features_globals",
-        globals = GLOBALS,
     )

@@ -1,4 +1,4 @@
-load("//:deps.bzl", "bazel_features_repos")
+load("//private:repos.bzl", "bazel_features_repos")
 
 def _version_extension_impl(mctx):
     bazel_features_repos()
