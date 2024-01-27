@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  unit_tests:
     uses: bazel-contrib/.github/.github/workflows/bazel.yaml@v5
     with:
       folders: '["."]'
@@ -29,10 +29,13 @@ jobs:
           {"bzlmodEnabled": false},
           {"bazelversion": "5.4.0"}
         ]
-      # exclude: |
-      #   [
-      #     {"bazelversion": "5.4.0", "bzlmodEnabled": false},
-      #     {"bazelversion": "5.4.0", "bzlmodEnabled": true},
-      #     {"bazelversion": "5.4.0", "os": "macos-latest"},
-      #     {"bazelversion": "5.4.0", "os": "windows-latest"}
-      #   ]
+  test:
+    runs-on: ubuntu-latest
+    needs:
+      - unit_tests
+      - bcr_test
+    if: ${{ always() }}
+    steps:
+      - uses: cgrindel/gha_join_jobs@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
