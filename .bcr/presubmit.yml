@@ -9,5 +9,6 @@ tasks:
   verify_targets:
     name: Verify build targets
     platform: ${{ platform }}
-    build_targets:
-      - "@bazel_features//test:tests"
+    working_directory: test/bcr_test
+    test_targets:
+      - "//..."
