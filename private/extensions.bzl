@@ -1,8 +1,6 @@
-load("//:deps.bzl", "bazel_features_deps")
-load(":version_repo.bzl", "version_repo")
-load(":globals_repo.bzl", "globals_repo")
+load("//private:repos.bzl", "bazel_features_repos")
 
-def _version_extension_impl(mctx):
-    bazel_features_deps()
+def _version_extension_impl(_):
+    bazel_features_repos()
 
 version_extension = module_extension(_version_extension_impl)

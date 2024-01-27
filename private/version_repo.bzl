@@ -1,5 +1,18 @@
 def _version_repo_impl(rctx):
-    rctx.file("BUILD.bazel", "exports_files([\"version.bzl\"])")
+    rctx.file(
+        "BUILD.bazel",
+        """
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+exports_files(["version.bzl"])
+
+bzl_library(
+    name = "version",
+    srcs = ["version.bzl"],
+    visibility = ["//visibility:public"],
+)
+""",
+    )
     rctx.file("version.bzl", "version = '" + native.bazel_version + "'")
 
 version_repo = repository_rule(
