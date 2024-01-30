@@ -1,3 +1,4 @@
+module_path: test/bcr_test
 matrix:
   platform:
     - centos7
@@ -6,9 +7,8 @@ matrix:
     - macos
     - windows
 tasks:
-  verify_targets:
-    name: Verify build targets
+  run_test_module:
+    name: Run test module
     platform: ${{ platform }}
-    working_directory: test/bcr_test
     test_targets:
       - "//..."
