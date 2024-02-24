@@ -29,6 +29,8 @@ _external_deps = struct(
     download_has_block_param = ge("7.1.0"),
     # Whether repository_ctx#download has the headers parameter, allowing arbitrary headers (#17829)
     download_has_headers_param = ge("7.1.0"),
+    # Whether repository_ctx#extract has unicode filename extraction fix (#18448)
+    extract_supports_unicode_filenames = ge("6.4.0"),
 )
 
 _flags = struct(
