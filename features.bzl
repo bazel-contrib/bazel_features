@@ -22,6 +22,9 @@ _cc = struct(
     # and removed again in commit
     # https://github.com/bazelbuild/bazel/commit/4853dfd02ac7440a04caada830b7b61b6081bdfe.
     undefined_dynamic_lookup = ge("0.25.0") and lt("7.0.0-pre.20230118.2"),
+    # Whether the treat_warnings_as_errors feature works on macOS.
+    # https://github.com/bazelbuild/bazel/commit/3d7c5ae47e2a02ccd81eb8024f22d56ae7811c9b
+    treat_warnings_as_errors_works_on_macos = ge("7.1.0"),
 )
 
 _external_deps = struct(
