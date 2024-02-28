@@ -1,3 +1,5 @@
+"""Contains the macro bazel_features_deps to install WORKSPACE dependencies."""
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 load("//private:repos.bzl", "bazel_features_repos")

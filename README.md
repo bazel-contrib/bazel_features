@@ -1,5 +1,4 @@
-Bazel Features
-==============
+# Bazel Features
 
 Use this to determine the availability of a Bazel feature in your ruleset. It works under the hood by comparing the Bazel version against a known range in which the feature is available. Example usage:
 

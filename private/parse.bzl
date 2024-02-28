@@ -1,3 +1,5 @@
+"""Internal functions to parse versions."""
+
 def _safe_int(s, v):
     if not s.isdigit():
         fail("invalid Bazel version '{}': non-numeric segment '{}'".format(v, s))
@@ -13,7 +15,14 @@ def _partition(s):
     return s, ""
 
 def parse_version(v):
-    """Parses the given Bazel version string into a comparable value."""
+    """Parses the given Bazel version string into a comparable value.
+
+    Args:
+      v (str): version string
+
+    Returns:
+      a triple ([major, minor, patch], is_released, prerelease)
+    """
     if not v:
         # An empty string is treated as a "dev version", which is greater than anything.
         v = "999999.999999.999999"
