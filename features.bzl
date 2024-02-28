@@ -1,7 +1,7 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge")
+load("//private:util.bzl", "ge", "lt")
 
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
@@ -16,6 +16,12 @@ _cc = struct(
     objc_linking_info_migrated = ge("7.0.0-pre.20230724.1"),
     # https://github.com/bazelbuild/bazel/commit/c8c3878088cb706b820d506a682e1156b7e8c64d
     swift_fragment_removed = ge("8.0.0-pre.20240101.1"),
+    # Whether the Unix C/C++ toolchain passes -undefined dynamic_lookup to the
+    # macOS linker.  Added in commit
+    # https://github.com/bazelbuild/bazel/commit/314cf1f9e4b332955c4800b2451db4e926c3e092
+    # and removed again in commit
+    # https://github.com/bazelbuild/bazel/commit/4853dfd02ac7440a04caada830b7b61b6081bdfe.
+    undefined_dynamic_lookup = ge("0.25.0") and lt("7.0.0-pre.20230118.2"),
 )
 
 _external_deps = struct(
