@@ -1,7 +1,7 @@
+"""Tests for `bazel_features` module."""
+
 load("@bazel_features//:features.bzl", "bazel_features")
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
-
-"""Tests for `bazel_features` module."""
 
 def _is_bzlmod_enabled_test(ctx):
     env = unittest.begin(ctx)
