@@ -1,3 +1,5 @@
+"""Internal functions to parse versions."""
+
 def _safe_int(s, v):
     if not s.isdigit():
         fail("invalid Bazel version '{}': non-numeric segment '{}'".format(v, s))

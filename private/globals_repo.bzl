@@ -1,3 +1,5 @@
+"""Contains the internal repository rule globals_repo."""
+
 load("//private:parse.bzl", "parse_version")
 
 def _globals_repo_impl(rctx):

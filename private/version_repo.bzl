@@ -1,3 +1,5 @@
+"""Contains the internal repository rule version_repo."""
+
 def _version_repo_impl(rctx):
     rctx.file(
         "BUILD.bazel",

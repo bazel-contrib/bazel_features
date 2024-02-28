@@ -1,3 +1,5 @@
+"""Internal constants."""
+
 # Access any of these globals via bazel_features.globals.<name>
 # If the current version of Bazel doesn't have this global, it will be None.
 GLOBALS = {

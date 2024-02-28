@@ -1,3 +1,5 @@
+"""Internal-only utility functions."""
+
 load("@bazel_features_version//:version.bzl", "version")
 load(":parse.bzl", "parse_version")
 
