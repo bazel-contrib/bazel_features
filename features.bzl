@@ -50,6 +50,9 @@ _flags = struct(
 )
 
 _rules = struct(
+    # Whether the computed_substitutions parameter of ctx.actions.expand_template and ctx.actions.template_dict are stable.
+    # https://github.com/bazelbuild/bazel/commit/61c31d255b6ba65c372253f65043d6ea3f10e1f9
+    expand_template_has_computed_substitutions = ge("7.0.0-pre.20231011.2"),
     # Whether TemplateDict#add_joined allows the map_each callback to return a list of strings (#17306)
     template_dict_map_each_can_return_list = ge("6.1.0"),
     # Whether coverage_common.instrumented_files_info spports the
