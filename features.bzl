@@ -1,7 +1,7 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge", "lt")
+load("//private:util.bzl", "ge", "ge_same_major", "lt")
 
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
@@ -50,13 +50,10 @@ _flags = struct(
 )
 
 _java = struct(
-    # Whether JavaInfo has the module_flags_info field. Added in
-    # https://github.com/bazelbuild/bazel/commit/2217b13cae4110b0e2b8fe6a283a9b6dfbf150e8
-    java_info_module_flags_info = ge("6.0.0-pre.20220517.1"),
     # Whether the JavaInfo constructor has add_exports/add_opens named parameters. Added in
     # https://github.com/bazelbuild/bazel/commit/d2783a3c3d1b899beb674e029bfea3519062e8be (HEAD)
     # https://github.com/bazelbuild/bazel/commit/e2249f91ff84541565d8ba841592a0a8a43fcb66 (7.0.0)
-    java_info_constructor_module_flags = ge("7.0.0") and not (ge("8.0.0-pre.00000000") and lt("8.0.0-pre.20240101.1")),
+    java_info_constructor_module_flags = ge_same_major("7.0.0") or ge("8.0.0-pre.20240101.1"),
 )
 
 _rules = struct(
