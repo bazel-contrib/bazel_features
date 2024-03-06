@@ -49,6 +49,16 @@ _flags = struct(
     ),
 )
 
+_java = struct(
+    # Whether JavaInfo has the module_flags_info field. Added in
+    # https://github.com/bazelbuild/bazel/commit/2217b13cae4110b0e2b8fe6a283a9b6dfbf150e8
+    java_info_module_flags_info = ge("6.0.0-pre.20220517.1"),
+    # Whether the JavaInfo constructor has add_exports/add_opens named parameters. Added in
+    # https://github.com/bazelbuild/bazel/commit/d2783a3c3d1b899beb674e029bfea3519062e8be (HEAD)
+    # https://github.com/bazelbuild/bazel/commit/e2249f91ff84541565d8ba841592a0a8a43fcb66 (7.0.0)
+    java_info_constructor_module_flags = ge("7.0.0") and not (ge("8.0.0-pre.00000000") and lt("8.0.0-pre.20240101.1")),
+)
+
 _rules = struct(
     # Whether the computed_substitutions parameter of ctx.actions.expand_template and ctx.actions.template_dict are stable.
     # https://github.com/bazelbuild/bazel/commit/61c31d255b6ba65c372253f65043d6ea3f10e1f9
@@ -74,6 +84,7 @@ bazel_features = struct(
     external_deps = _external_deps,
     flags = _flags,
     globals = globals,
+    java = _java,
     rules = _rules,
     toolchains = _toolchains,
 )
