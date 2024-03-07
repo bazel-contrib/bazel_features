@@ -1,7 +1,7 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge", "lt")
+load("//private:util.bzl", "ge", "ge_same_major", "lt")
 
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
@@ -49,6 +49,13 @@ _flags = struct(
     ),
 )
 
+_java = struct(
+    # Whether the JavaInfo constructor has add_exports/add_opens named parameters. Added in
+    # https://github.com/bazelbuild/bazel/commit/d2783a3c3d1b899beb674e029bfea3519062e8be (HEAD)
+    # https://github.com/bazelbuild/bazel/commit/e2249f91ff84541565d8ba841592a0a8a43fcb66 (7.0.0)
+    java_info_constructor_module_flags = ge_same_major("7.0.0") or ge("8.0.0-pre.20240101.1"),
+)
+
 _rules = struct(
     # Whether the computed_substitutions parameter of ctx.actions.expand_template and ctx.actions.template_dict are stable.
     # https://github.com/bazelbuild/bazel/commit/61c31d255b6ba65c372253f65043d6ea3f10e1f9
@@ -74,6 +81,7 @@ bazel_features = struct(
     external_deps = _external_deps,
     flags = _flags,
     globals = globals,
+    java = _java,
     rules = _rules,
     toolchains = _toolchains,
 )

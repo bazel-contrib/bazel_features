@@ -17,5 +17,9 @@ def ne(v):
 def ge(v):
     return BAZEL_VERSION >= parse_version(v)
 
+def ge_same_major(v):
+    pv = parse_version(v)
+    return BAZEL_VERSION >= pv and BAZEL_VERSION[0] == pv[0]
+
 def gt(v):
     return BAZEL_VERSION > parse_version(v)
