@@ -40,6 +40,14 @@ _external_deps = struct(
     download_has_headers_param = ge("7.1.0"),
     # Whether repository_ctx#extract has unicode filename extraction fix (#18448)
     extract_supports_unicode_filenames = ge("6.4.0"),
+    # Whether the `bazel mod tidy` subcommand is available (#19674)
+    # https://github.com/bazelbuild/bazel/commit/9f0f23211293589d812cb9ea4aaaead52486c52e
+    # https://github.com/bazelbuild/bazel/commit/9fe80d33e129de521b696c330802aad9782db18f
+    bazel_mod_tidy = ge_same_major("7.1.0") or ge("8.0.0-pre.20240213.1"),
+    # Whether module_ctx.extension_metadata has the reproducible parameter (#19674)
+    # https://github.com/bazelbuild/bazel/commit/c796aba6ee36970956ea32b46a2f121bb4d1818a
+    # https://github.com/bazelbuild/bazel/commit/e730201e6bf8d6c1c80433b5b42305c3167a8660
+    extension_metadata_has_reproducible = ge_same_major("7.1.0") or ge("8.0.0-pre.20240213.1"),
 )
 
 _flags = struct(
