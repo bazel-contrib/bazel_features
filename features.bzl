@@ -8,6 +8,9 @@ _cc = struct(
     # on find_cpp_toolchain are available (#17308).
     # Note: While the target and parameter are available in 6.1.0, they only take effect in Bazel 7.
     find_cpp_toolchain_has_mandatory_param = ge("6.1.0"),
+    # Whether `dsym_path` is no longer incorrectly quoted
+    # https://github.com/bazelbuild/bazel/commit/7a04b220f30b92d11049157279ef0cfb5130870d
+    fixed_dsym_path_quoting = ge_same_major("7.2.0") or ge("8.0.0-pre.20240404.3"),
     # Note: In Bazel 6.3 the `grep_includes` parameter is optional and a no-op in the cc_common API
     # In future Bazel versions it will be removed altogether.
     grep_includes_is_optional = ge("6.3.0"),
