@@ -1,8 +1,6 @@
 """Internal module extensions."""
 
+load("@bazel_skylib//lib:modules.bzl", "modules")
 load("//private:repos.bzl", "bazel_features_repos")
 
-def _version_extension_impl(_):
-    bazel_features_repos()
-
-version_extension = module_extension(_version_extension_impl)
+version_extension = modules.as_extension(bazel_features_repos)
