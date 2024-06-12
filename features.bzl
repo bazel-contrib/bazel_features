@@ -67,6 +67,12 @@ _java = struct(
     java_info_constructor_module_flags = ge_same_major("7.0.0") or ge("8.0.0-pre.20240101.1"),
 )
 
+_proto = struct(
+    # Bazel 7.0.0 introduced ProtoInfo in Starlark, which can be constructed and has different fields
+    # that ProtoInfo in previous versions. The check is needed for proto rules that are using ProtoInfo from Bazel.
+    starlark_proto_info = ge("7.0.0"),
+)
+
 _rules = struct(
     # Whether the computed_substitutions parameter of ctx.actions.expand_template and ctx.actions.template_dict are stable.
     # https://github.com/bazelbuild/bazel/commit/61c31d255b6ba65c372253f65043d6ea3f10e1f9
@@ -93,6 +99,7 @@ bazel_features = struct(
     flags = _flags,
     globals = globals,
     java = _java,
+    proto = _proto,
     rules = _rules,
     toolchains = _toolchains,
 )
