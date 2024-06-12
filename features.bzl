@@ -69,7 +69,7 @@ _java = struct(
 
 _proto = struct(
     # Bazel 7.0.0 introduced ProtoInfo in Starlark, which can be constructed and has different fields
-    # that ProtoInfo in previous versions. The check is needed for proto rules that are using ProtoInfo from Bazel.
+    # than ProtoInfo in previous versions. The check is needed for proto rules that are using ProtoInfo from Bazel.
     starlark_proto_info = ge("7.0.0"),
 )
 
