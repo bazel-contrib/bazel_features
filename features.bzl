@@ -28,6 +28,8 @@ _cc = struct(
     # Whether the treat_warnings_as_errors feature works on macOS.
     # https://github.com/bazelbuild/bazel/commit/3d7c5ae47e2a02ccd81eb8024f22d56ae7811c9b
     treat_warnings_as_errors_works_on_macos = ge("7.1.0"),
+    # Whether protobuf repository can access private C++ features
+    protobuf_on_allowlist = ge(8.0.0)
 )
 
 _external_deps = struct(
