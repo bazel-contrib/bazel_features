@@ -1,6 +1,6 @@
 """Provides a macro to do some loading-time test assertions."""
 
-load("//private:util.bzl", "BAZEL_VERSION", "ge")
+load("//private:util.bzl", "BAZEL_VERSION", "ge", "lt")
 load("//private:parse.bzl", "parse_version")
 load("//:features.bzl", "bazel_features")
 
@@ -48,6 +48,10 @@ def run_test(name):
 
     if not bazel_features.globals.DefaultInfo == DefaultInfo:
         fail("bazel_features.globals.DefaultInfo != DefaultInfo")
+
+    # TODO: add tests with --incompatible_autoload_symbols
+    if lt("8.0.0") and not bazel_features.globals.ProtoInfo == ProtoInfo:
+        fail("bazel_features.globals.ProtoInfo != ProtoInfo")
 
     if not bazel_features.globals.__TestingOnly_NeverAvailable == None:
         fail("bazel_features.globals.__TestingOnly_NeverAvailable != None")

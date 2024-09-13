@@ -16,3 +16,8 @@ GLOBALS = {
     "DefaultInfo": "0.0.1",
     "__TestingOnly_NeverAvailable": "1000000000.0.0",
 }
+
+# This one works in the reverse, put in the version when the global symbol is removed.
+LEGACY_GLOBALS = {
+    "ProtoInfo": "8.0.0",
+}
