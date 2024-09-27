@@ -25,5 +25,4 @@ LEGACY_GLOBALS = {
     "PyCcLinkParamsProvider": "8.0.0",
     "PyInfo": "8.0.0",
     "PyRuntimeInfo": "8.0.0",
-    "proto_common_do_not_use": "8.0.0",
 }
