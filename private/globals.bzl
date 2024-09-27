@@ -20,4 +20,12 @@ GLOBALS = {
 # This one works in the reverse, put in the version when the global symbol is removed.
 LEGACY_GLOBALS = {
     "ProtoInfo": "8.0.0",
+    "JavaInfo": "8.0.0",
+    "JavaPluginInfo": "8.0.0",
+    "ProguardSpecProvider": "8.0.0",
+    "AndroidIdeInfo": "8.0.0",
+    "AndroidSdkInfo": "8.0.0",
+    "PyInfo": "8.0.0",
+    "PyRuntimeInfo": "8.0.0",
+    "PyCcLinkParamsProvider": "8.0.0",
 }
