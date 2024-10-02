@@ -33,6 +33,11 @@ _cc = struct(
     protobuf_on_allowlist = ge("8.0.0"),
 )
 
+_docs = struct(
+    # See https://bazelbuild.slack.com/archives/CDCMRLS23/p1727889648853179?thread_ts=1727887056.727699&cid=CDCMRLS23
+    kwargs_name_with_double_star = ge("8.0.0-pre.20240911.1"),
+)
+
 _external_deps = struct(
     # Whether --enable_bzlmod is set, and thus, whether str(Label(...)) produces canonical label
     # literals (i.e., "@@repo//pkg:file").
@@ -98,6 +103,7 @@ _toolchains = struct(
 
 bazel_features = struct(
     cc = _cc,
+    docs = _docs,
     external_deps = _external_deps,
     flags = _flags,
     globals = globals,
