@@ -1,7 +1,7 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge", "ge_same_major", "lt")
+load("//private:util.bzl", "ge", "ge_same_major", "gt", "lt")
 
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
@@ -35,7 +35,7 @@ _cc = struct(
 
 _docs = struct(
     # See https://bazelbuild.slack.com/archives/CDCMRLS23/p1727889648853179?thread_ts=1727887056.727699&cid=CDCMRLS23
-    kwargs_name_with_double_star = ge("8.0.0-pre.20240911.1"),
+    kwargs_name_with_double_star = gt("8.0.0-pre.20240911.1"),
 )
 
 _external_deps = struct(
