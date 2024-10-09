@@ -1,7 +1,7 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge", "ge_same_major", "lt")
+load("//private:util.bzl", "ge", "ge_same_major", "gt", "lt")
 
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
@@ -31,6 +31,12 @@ _cc = struct(
     # Whether protobuf repository can access private C++ features
     # https://github.com/bazelbuild/bazel/commit/6022ee81705295704dcbedb2ceb5869049191121
     protobuf_on_allowlist = ge("8.0.0"),
+)
+
+_docs = struct(
+    # The stardoc output changed in https://github.com/bazelbuild/bazel/commit/bd1c3af2ea14e81268e940d2b8ba5ad00c3f08d7
+    # This may be required for "diff tests" that assert on the generated API docs.
+    kwargs_name_with_double_star = ge("8.0.0-pre.20240603.2"),
 )
 
 _external_deps = struct(
@@ -98,6 +104,7 @@ _toolchains = struct(
 
 bazel_features = struct(
     cc = _cc,
+    docs = _docs,
     external_deps = _external_deps,
     flags = _flags,
     globals = globals,
