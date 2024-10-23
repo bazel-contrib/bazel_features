@@ -84,7 +84,7 @@ _proto = struct(
 
 _rules = struct(
     # Whether files with arbitrary characters (including spaces) are allowed in Bazel runfiles.
-    # https://github.com/fmeum/bazel/commit/6e4072eeee16582531918d4ab1988f5df9fd550f
+    # https://github.com/bazelbuild/bazel/commit/c9115305cb81e7fe645f91ca790642cab136b2a1
     allow_runfiles_with_arbitrary_characters = ge("7.4.0"),
     # Whether the computed_substitutions parameter of ctx.actions.expand_template and ctx.actions.template_dict are stable.
     # https://github.com/bazelbuild/bazel/commit/61c31d255b6ba65c372253f65043d6ea3f10e1f9
