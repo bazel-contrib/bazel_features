@@ -83,6 +83,9 @@ _proto = struct(
 )
 
 _rules = struct(
+    # Whether runfiles may contain all characters. Support for all characters added in:
+    # https://github.com/bazelbuild/bazel/commit/c9115305cb81e7fe645f91ca790642cab136b2a1
+    all_characters_allowed_in_runfiles = ge("7.4.0"),
     # Whether the computed_substitutions parameter of ctx.actions.expand_template and ctx.actions.template_dict are stable.
     # https://github.com/bazelbuild/bazel/commit/61c31d255b6ba65c372253f65043d6ea3f10e1f9
     expand_template_has_computed_substitutions = ge("7.0.0-pre.20231011.2"),
