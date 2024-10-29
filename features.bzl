@@ -97,6 +97,8 @@ _rules = struct(
     instrumented_files_info_has_metadata_files = ge("7.0.0-pre.20230710.5"),
     # Whether treeartifacts can have symlinks pointing outside of the tree artifact. (#21263)
     permits_treeartifact_uplevel_symlinks = ge("7.1.0"),
+    # Whether rule extension APIs are available by default
+    rule_extension_apis_available = ge("8.0.0rc1"),
 )
 
 _toolchains = struct(
