@@ -38,6 +38,7 @@ def run_test(name):
     # some basic version parsing/comparison tests
     _assert_lt("6.0.0", "6.0.1")
     _assert_lt("6.0.0rc3", "6.0.0")
+    _assert_lt("6.0.0", "6.0.0rc3")
     _assert_lt("6.0.0-pre8.9.10", "6.0.0rc3")
     _assert_lt("6.0.0 some build metadata", "6.1.0 some other build metadata")
     _assert_lt("6.0.0", "")
