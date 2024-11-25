@@ -30,4 +30,9 @@ def parse_version(v):
     segments = release.split(".")
     if len(segments) != 3:
         fail("invalid Bazel version '{}': got {} dot-separated segments, want 3".format(v, len(segments)))
+    if prerelease.startswith("rc") and len(prerelease) > 2 and prerelease[2:].isdigit():
+        # Release candidates are considered to be the same as the release version for the purpose of
+        # feature detection. This allows for realistic testing of candidates and avoids the need to
+        # specify "rc1" on every version.
+        prerelease = ""
     return [_safe_int(s, v) for s in segments], not prerelease, prerelease
