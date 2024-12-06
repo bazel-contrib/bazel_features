@@ -9,11 +9,17 @@ GLOBALS = {
     # https://github.com/bazelbuild/bazel/commit/dbb09c9ea84cc6099ad7a30fa8206130d025f7ad
     "CcSharedLibraryHintInfo": "7.0.0-pre.20230316.2",
 
+    # https://github.com/bazelbuild/bazel/commit/0c100efeba05577b8bc334e1fae31149854bb0b7
+    "macro": "8.0.0",
+
     # https://github.com/bazelbuild/bazel/commit/d1d35b280af1459458f996502e255d3774f391c2
     "PackageSpecificationInfo": "6.4.0",
 
     # https://github.com/bazelbuild/bazel/pull/15232
     "RunEnvironmentInfo": "5.3.0",
+
+    # https://github.com/bazelbuild/bazel/commit/e95c682bd1a1ab4495161b5a4423ad874112ad3f
+    "subrule": "7.0.0",
 
     # Only used for testing bazel_features itself.
     "DefaultInfo": "0.0.1",
