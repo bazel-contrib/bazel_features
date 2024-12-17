@@ -34,4 +34,5 @@ LEGACY_GLOBALS = {
     "PyCcLinkParamsProvider": "8.0.0",
     "PyInfo": "8.0.0",
     "PyRuntimeInfo": "8.0.0",
+    "cc_proto_aspect": "8.0.0",
 }
