@@ -1,8 +1,8 @@
 """Provides a macro to do some loading-time test assertions."""
 
-load("//private:util.bzl", "BAZEL_VERSION", "ge", "lt")
-load("//private:parse.bzl", "parse_version")
 load("//:features.bzl", "bazel_features")
+load("//private:parse.bzl", "parse_version")
+load("//private:util.bzl", "BAZEL_VERSION", "ge", "lt")
 
 def _empty_test_impl(ctx):
     extension = ".bat" if ctx.attr.is_windows else ".sh"

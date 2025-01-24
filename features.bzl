@@ -1,7 +1,7 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge", "ge_same_major", "gt", "lt")
+load("//private:util.bzl", "ge", "ge_same_major", "lt")
 
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter

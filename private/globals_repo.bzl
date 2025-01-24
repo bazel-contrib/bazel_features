@@ -34,6 +34,7 @@ bzl_library(
             fail("Invalid global name: %s" % global_)
 
         value = global_ if bazel_version < parse_version(version) else "None"
+
         # If the legacy_globals is available, we take the value from it.
         # The value is populated by --incompatible_autoload_externally and may apply to older Bazel versions
         lines.append("    %s = getattr(getattr(native, 'legacy_globals', None), '%s', %s)," % (global_, global_, value))
@@ -53,7 +54,7 @@ globals_repo = repository_rule(
         "legacy_globals": attr.string_dict(
             mandatory = True,
         ),
-     },
+    },
 )
 
 def _is_valid_identifier(s):
