@@ -31,6 +31,9 @@ _cc = struct(
     # Whether protobuf repository can access private C++ features
     # https://github.com/bazelbuild/bazel/commit/6022ee81705295704dcbedb2ceb5869049191121
     protobuf_on_allowlist = ge("8.0.0"),
+    # Whether cc_{binary,test} can be extended.
+    # https://github.com/bazelbuild/bazel/commit/b746d663da71f937390809f0e8368112cafafb56
+    rules_support_extension = ge("8.0.1"),
 )
 
 _docs = struct(
