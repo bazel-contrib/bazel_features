@@ -19,6 +19,7 @@ def ge(v):
 
 def ge_same_major(v):
     pv = parse_version(v)
+
     # Version 1.2.3 parses to ([1, 2, 3], ...).
     return BAZEL_VERSION >= pv and BAZEL_VERSION[0][0] == pv[0][0]
 
