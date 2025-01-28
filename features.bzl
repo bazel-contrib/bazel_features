@@ -40,6 +40,12 @@ _docs = struct(
     # The stardoc output changed in https://github.com/bazelbuild/bazel/commit/bd1c3af2ea14e81268e940d2b8ba5ad00c3f08d7
     # This may be required for "diff tests" that assert on the generated API docs.
     kwargs_name_with_double_star = ge("8.0.0-pre.20240603.2"),
+    # Starting with Bazel 8.1.0, all strings exported to Stardoc (docstrings,
+    # rule names, etc.) are interpreted as UTF-8.  Previously, they were
+    # interpreted as Latin-1, resulting in double-encoding if the underlying
+    # Starlark file was actually UTF-8-encoded.  See
+    # https://github.com/bazelbuild/bazel/pull/24935.
+    utf8_enabled = ge("8.1.0"),
 )
 
 _external_deps = struct(
