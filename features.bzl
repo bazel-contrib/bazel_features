@@ -69,6 +69,10 @@ _external_deps = struct(
     # https://github.com/bazelbuild/bazel/commit/c796aba6ee36970956ea32b46a2f121bb4d1818a
     # https://github.com/bazelbuild/bazel/commit/e730201e6bf8d6c1c80433b5b42305c3167a8660
     extension_metadata_has_reproducible = ge_same_major("7.1.0") or ge("8.0.0-pre.20240213.1"),
+    # Whether repository_ctx#getenv exists (#19511)
+    # https://github.com/bazelbuild/bazel/commit/c230e39fb225edd206ed0aa07cfcdd8c51589965
+    # https://github.com/bazelbuild/bazel/commit/25815511434d17f2843f73e0ff5231f3d80bc44e
+    repository_ctx_has_getenv = ge_same_major("7.1.0") or ge("8.0.0-pre.20240128.3"),
 )
 
 _flags = struct(
