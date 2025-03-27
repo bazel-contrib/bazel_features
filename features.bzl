@@ -3,6 +3,13 @@
 load("@bazel_features_globals//:globals.bzl", "globals")
 load("//private:util.bzl", "ge", "ge_same_major", "lt")
 
+_apple = struct(
+    # From Bazel 8.0.0 on, the `xcode_version_flag` is available and the `XcodeVersionConfig`
+    # signature changed to migrate Xcode configuration to Starlark.
+    # https://github.com/bazelbuild/bazel/commit/26c6add3f9809611ad3795bce1e5c0fb37902902
+    xcode_config_migrated = ge("8.0.0"),
+)
+
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
     # on find_cpp_toolchain are available (#17308).
@@ -125,6 +132,7 @@ _toolchains = struct(
 )
 
 bazel_features = struct(
+    apple = _apple,
     cc = _cc,
     docs = _docs,
     external_deps = _external_deps,
