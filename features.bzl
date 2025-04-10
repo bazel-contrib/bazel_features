@@ -129,6 +129,9 @@ _toolchains = struct(
     # Whether the mandatory parameter is available on the config_common.toolchain_type function, and thus, whether optional toolchains are supported
     # https://bazel.build/versions/6.0.0/extending/toolchains#optional-toolchains
     has_optional_toolchains = ge("6.0.0"),
+    # Whether the use_target_platform_constraints attribute is available on the toolchain rule (#25123)
+    # https://github.com/bazelbuild/bazel/commit/ba9e539a086859afaa4d2b3bf8d3afb44bcd06ce
+    has_use_target_platform_constraints = ge("8.2.0"),
 )
 
 bazel_features = struct(
