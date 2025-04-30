@@ -123,6 +123,8 @@ _rules = struct(
     permits_treeartifact_uplevel_symlinks = ge("7.1.0"),
     # Whether rule extension APIs are available by default
     rule_extension_apis_available = ge("8.0.0rc1"),
+    # Whether Starlark anaylsis tests can transition on incompatible/experimenal flags (#25536)
+    analysis_tests_can_transition_on_experimenal_incompatible_flags = ge("8.2.0"),
 )
 
 _toolchains = struct(
