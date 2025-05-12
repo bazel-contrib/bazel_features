@@ -44,6 +44,8 @@ _cc = struct(
 )
 
 _docs = struct(
+    # https://bazel.build/reference/be/general#starlark_doc_extract
+    starlark_doc_extract = ge("7.0.0"),
     # The stardoc output changed in https://github.com/bazelbuild/bazel/commit/bd1c3af2ea14e81268e940d2b8ba5ad00c3f08d7
     # This may be required for "diff tests" that assert on the generated API docs.
     kwargs_name_with_double_star = ge("8.0.0-pre.20240603.2"),
