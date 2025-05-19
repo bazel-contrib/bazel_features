@@ -1,7 +1,7 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge", "ge_same_major", "lt")
+load("//private:util.bzl", "ge", "ge_same_major", "gt", "lt")
 
 _apple = struct(
     # From Bazel 8.0.0 on, the `xcode_version_flag` is available and the `XcodeVersionConfig`
@@ -125,6 +125,11 @@ _rules = struct(
     rule_extension_apis_available = ge("8.0.0rc1"),
     # Whether Starlark anaylsis tests can transition on incompatible/experimental flags (#25536)
     analysis_tests_can_transition_on_experimental_incompatible_flags = ge("8.2.0"),
+
+    # Internal only, don't use outside rules_java, rules_python & rules_shell.
+    # TODO: Use a larger version range after cherry-picking
+    # https://github.com/bazelbuild/bazel/commit/e81949554f3ecab5e2c4afd79031f498f36427fe
+    _has_launcher_maker_toolchain = gt("9.0.0-pre.20250506.6"),
 )
 
 _toolchains = struct(
