@@ -125,6 +125,9 @@ _rules = struct(
     rule_extension_apis_available = ge("8.0.0rc1"),
     # Whether Starlark anaylsis tests can transition on incompatible/experimental flags (#25536)
     analysis_tests_can_transition_on_experimental_incompatible_flags = ge("8.2.0"),
+    # Whether the attr_aspects and toolchains_aspects attributes on aspect accept Starlark functions.
+    # https://github.com/bazelbuild/bazel/commit/c422744caa072c66311a937049504901bc674b7d
+    aspect_propagation_context = ge("9.0.0-pre.20250311.1"),
 
     # Internal only, don't use outside rules_java, rules_python & rules_shell.
     # TODO: Use a larger version range after cherry-picking
