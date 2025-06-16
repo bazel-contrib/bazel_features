@@ -128,6 +128,9 @@ _rules = struct(
     # Whether the attr_aspects and toolchains_aspects attributes on aspect accept Starlark functions.
     # https://github.com/bazelbuild/bazel/commit/c422744caa072c66311a937049504901bc674b7d
     aspect_propagation_context = ge("9.0.0-pre.20250311.1"),
+    # Whether structs can have fields names 'to_json' and 'to_proto'.
+    # https://github.com/bazelbuild/bazel/commit/db5906870bdcb1631e1b18be8637aa21b79cf943
+    no_struct_field_denylist = ge("9.0.0-pre.20250128.3"),
 
     # Internal only, don't use outside rules_java, rules_python & rules_shell.
     # TODO: Use a larger version range after cherry-picking
