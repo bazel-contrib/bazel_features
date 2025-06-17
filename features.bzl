@@ -135,7 +135,7 @@ _rules = struct(
     # Internal only, don't use outside rules_java, rules_python & rules_shell.
     # TODO: Use a larger version range after cherry-picking
     # https://github.com/bazelbuild/bazel/commit/e81949554f3ecab5e2c4afd79031f498f36427fe
-    _has_launcher_maker_toolchain = gt("9.0.0-pre.20250506.6"),
+    _has_launcher_maker_toolchain = ge_same_major("8.3.0") or ge("9.0.0-pre.20250516.1"),
 )
 
 _toolchains = struct(
