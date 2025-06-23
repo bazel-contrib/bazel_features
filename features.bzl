@@ -119,6 +119,10 @@ _rules = struct(
     # metadata_files parameter.  Introduced in commit
     # https://github.com/bazelbuild/bazel/commit/ef54ef5d17a013c863c4e2fb0583e6bd209645f2.
     instrumented_files_info_has_metadata_files = ge("7.0.0-pre.20230710.5"),
+    # Whether coverage_common.instrumented_files_info supports the
+    # baseline_coverage_files parameter.  Introduced in commit
+    # https://github.com/bazelbuild/bazel/commit/e672aceda6fba37171bebce77c5ee62442337c23
+    instrumented_files_info_has_baseline_coverage_files = gt("9.0.0-pre.20250610.2"),
     # Whether treeartifacts can have symlinks pointing outside of the tree artifact. (#21263)
     permits_treeartifact_uplevel_symlinks = ge("7.1.0"),
     # Whether rule extension APIs are available by default
