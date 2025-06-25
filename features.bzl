@@ -1,6 +1,7 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
+load("@bazel_features_version//:version.bzl", _bazel_version = "version")
 load("//private:util.bzl", "ge", "ge_same_major", "gt", "lt")
 
 _apple = struct(
@@ -163,3 +164,7 @@ bazel_features = struct(
     rules = _rules,
     toolchains = _toolchains,
 )
+
+# Expose a public API providing the version of Bazel.
+# Workaround for https://github.com/bazelbuild/bazel/issues/8305
+bazel_version = _bazel_version
