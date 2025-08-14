@@ -152,6 +152,9 @@ _toolchains = struct(
     # Whether the use_target_platform_constraints attribute is available on the toolchain rule (#25123)
     # https://github.com/bazelbuild/bazel/commit/ba9e539a086859afaa4d2b3bf8d3afb44bcd06ce
     has_use_target_platform_constraints = ge("8.2.0"),
+    # Whether genrule.toolchains accepts toolchain_type targets
+    # https://github.com/bazelbuild/bazel/commit/0e876b1794d4db58b72949014401d22cc65d94a1
+    genrule_accepts_toolchain_types = ge_same_major("8.3.0") or ge("9.0.0-pre.20241016.1"),
 )
 
 bazel_features = struct(
