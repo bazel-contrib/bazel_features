@@ -155,6 +155,9 @@ _toolchains = struct(
     # Whether genrule.toolchains accepts toolchain_type targets
     # https://github.com/bazelbuild/bazel/commit/0e876b1794d4db58b72949014401d22cc65d94a1
     genrule_accepts_toolchain_types = ge_same_major("8.3.0") or ge("9.0.0-pre.20241016.1"),
+    # Whether the default_test_toolchain_type exists
+    # https://github.com/bazelbuild/bazel/commit/7d685648a8a9e4ea203f95ad983088a17103f4a6
+    has_default_test_toolchain_type = ge("9.0.0-pre.20250324.2"),
 )
 
 bazel_features = struct(
