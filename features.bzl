@@ -79,6 +79,10 @@ _external_deps = struct(
     # https://github.com/bazelbuild/bazel/commit/c796aba6ee36970956ea32b46a2f121bb4d1818a
     # https://github.com/bazelbuild/bazel/commit/e730201e6bf8d6c1c80433b5b42305c3167a8660
     extension_metadata_has_reproducible = ge_same_major("7.1.0") or ge("8.0.0-pre.20240213.1"),
+    # Whether repository_ctx.repo_metadata has the reproducible parameter (#25938)
+    # https://github.com/bazelbuild/bazel/commit/ad74aa5d9e29e7d4ab3043328ee25901be9e14f6
+    # https://github.com/bazelbuild/bazel/commit/33ee3b5acebbfffe74ef2ab8c3f437cb38382843
+    repo_metadata_has_reproducible = ge_same_major("8.3.0") or ge("9.0.0-pre.20250831.1"),
     # Whether repository_ctx#getenv exists (#19511)
     # Note: This primarily targets conditionally adding environ
     # attributes to repository rule declarations.  Inside repository rule
