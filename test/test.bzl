@@ -63,6 +63,11 @@ def run_test(name):
     if not bazel_features.globals.__TestingOnly_NeverAvailable == None:
         fail("bazel_features.globals.__TestingOnly_NeverAvailable != None")
 
+    if (lt("6.0.0-pre.20220630.1") or ge("9.0.0-pre.20250921.2")) and bazel_features.globals.CcSharedLibraryInfo != None:
+        fail("bazel_features.globals.CcSharedLibraryInfo != None")
+    elif (ge("6.0.0-pre.20220630.1") and lt("9.0.0-pre.20250921.2")) and bazel_features.globals.CcSharedLibraryInfo == None:
+        fail("bazel_features.globals.CcSharedLibraryInfo == None")
+
     # the pseudo test target that doesn't actually test anything
     _empty_test(
         name = name,
