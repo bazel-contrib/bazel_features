@@ -22,18 +22,14 @@ bzl_library(
     bazel_version = parse_version(native.bazel_version)
 
     lines = ["globals = struct("]
-    for global_, version in rctx.attr.globals.items():
+    for global_, (min_version, max_version) in rctx.attr.globals.items():
         if not _is_valid_identifier(global_):
             fail("Invalid global name: %s" % global_)
-
-        value = global_ if bazel_version >= parse_version(version) else "None"
-        lines.append("    %s = %s," % (global_, value))
-
-    for global_, version in rctx.attr.legacy_globals.items():
-        if not _is_valid_identifier(global_):
-            fail("Invalid global name: %s" % global_)
-
-        value = global_ if bazel_version < parse_version(version) else "None"
+        if not min_version and not max_version:
+            fail("invalid config for:", global_, "expected at least one version")
+        value = (
+            global_ if not min_version or bazel_version >= parse_version(min_version) else "None"
+        ) if bazel_version < parse_version(max_version) else "None"
 
         # If the legacy_globals is available, we take the value from it.
         # The value is populated by --incompatible_autoload_externally and may apply to older Bazel versions
@@ -48,10 +44,7 @@ globals_repo = repository_rule(
     # Force reruns on server restarts to keep native.bazel_version up-to-date.
     local = True,
     attrs = {
-        "globals": attr.string_dict(
-            mandatory = True,
-        ),
-        "legacy_globals": attr.string_dict(
+        "globals": attr.string_list_dict(
             mandatory = True,
         ),
     },
