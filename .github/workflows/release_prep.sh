@@ -11,6 +11,11 @@ ARCHIVE="bazel_features-$TAG.tar.gz"
 git archive --format=tar --prefix=${PREFIX}/ ${TAG} | gzip > $ARCHIVE
 SHA=$(shasum -a 256 $ARCHIVE | awk '{print $1}')
 
+# Sadly --attempt_to_print_relative_paths does not make these execroot-relative
+bazel cquery --output=files 'kind(starlark_doc_extract, //...)' \
+  | sed 's|^bazel-out/[^/]*/bin/||' \
+  | tar --create --auto-compress --directory "$(bazel info bazel-bin)" --file "$GITHUB_WORKSPACE/${ARCHIVE%.tar.gz}.docs.tar.gz" --files-from=-
+
 cat << EOF
 ## Using Bzlmod with Bazel 6
 

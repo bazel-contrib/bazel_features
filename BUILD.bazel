@@ -22,6 +22,12 @@ bzl_library(
     ],
 )
 
+starlark_doc_extract(
+    name = "features.doc_extract",
+    src = "features.bzl",
+    deps = ["features"],
+)
+
 bzl_library(
     name = "deps",
     srcs = ["deps.bzl"],
