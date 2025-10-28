@@ -142,6 +142,9 @@ _rules = struct(
     # Whether structs can have fields names 'to_json' and 'to_proto'.
     # https://github.com/bazelbuild/bazel/commit/db5906870bdcb1631e1b18be8637aa21b79cf943
     no_struct_field_denylist = ge("9.0.0-pre.20250128.3"),
+    # Whether the new merkle cache exists, which is on by default and handles source directories efficiently.
+    # https://github.com/bazelbuild/bazel/commit/30ca50950fdaff032925efe64c2690a9f05e074d
+    merkle_cache_v2 = gt("9.0.0-pre.20251014.1"),
 
     # Internal only, don't use outside rules_java, rules_python & rules_shell.
     # TODO: Use a larger version range after cherry-picking
