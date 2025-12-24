@@ -134,6 +134,10 @@ _rules = struct(
     permits_treeartifact_uplevel_symlinks = ge("7.1.0"),
     # Whether rule extension APIs are available by default
     rule_extension_apis_available = ge("8.0.0rc1"),
+    # Whether ctx.actions.map_directory() is available.
+    # See https://github.com/bazelbuild/bazel/commit/c31416ad9b9706f99f98000605930b459f06854c
+    # NB: --experimental_allow_map_directory must be true in the Bazel command line for this to work.
+    map_directory_available = ge("9.0.0-pre.20251008.2"),
     # Whether Starlark anaylsis tests can transition on incompatible/experimental flags (#25536)
     analysis_tests_can_transition_on_experimental_incompatible_flags = ge("8.2.0"),
     # Whether the attr_aspects and toolchains_aspects attributes on aspect accept Starlark functions.
