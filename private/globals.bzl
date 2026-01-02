@@ -24,6 +24,9 @@ GLOBALS = {
     "PyRuntimeInfo": ("", "8.0.0"),
     # https://github.com/bazelbuild/bazel/pull/15232
     "RunEnvironmentInfo": ("5.3.0", ""),
+    # https://github.com/bazelbuild/bazel/commit/8ad5f32889d687bce4de833d87e56e7ef19989d8
+    # https://github.com/bazelbuild/bazel/commit/c5e08d4de65167e91045d99e89dc4b6a17e9fb39
+    "set": ("8.1.0", ""),
     # https://github.com/bazelbuild/bazel/commit/e95c682bd1a1ab4495161b5a4423ad874112ad3f
     "subrule": ("7.0.0", ""),
     # Only used for testing bazel_features itself.
