@@ -8,6 +8,8 @@ _apple = struct(
     # signature changed to migrate Xcode configuration to Starlark.
     # https://github.com/bazelbuild/bazel/commit/26c6add3f9809611ad3795bce1e5c0fb37902902
     xcode_config_migrated = ge("8.0.0"),
+    # Whether apple_common has `compilation_support` available
+    apple_common_compilation_support_migrated = ge("9.0.0rc1"),
 )
 
 _cc = struct(
@@ -44,6 +46,9 @@ _cc = struct(
     # Whether cc_toolchain has the generate_modmap attribute.
     # https://github.com/bazelbuild/bazel/commit/8028655414a189b6897b1b51e3e43b5711e0af98
     cc_toolchain_has_generate_modmap = gt("9.0.0-pre.20250716.1"),
+    # Whether the objc fragment contains builtin_objc_strip_action
+    # https://github.com/bazelbuild/bazel/commit/7d50755cf12e40838096ad5142bf1f41e96789e9
+    objc_fragment_has_builtin_objc_strip_action = ge("9.0.0-pre.20250121.1"),
 )
 
 _docs = struct(
