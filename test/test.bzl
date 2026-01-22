@@ -3,6 +3,8 @@
 load("//:features.bzl", "bazel_features")
 load("//private:parse.bzl", "parse_version")
 load("//private:util.bzl", "BAZEL_VERSION", "ge", "lt")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 def _empty_test_impl(ctx):
     extension = ".bat" if ctx.attr.is_windows else ".sh"
@@ -56,9 +58,8 @@ def run_test(name):
     if not bazel_features.globals.DefaultInfo == DefaultInfo:
         fail("bazel_features.globals.DefaultInfo != DefaultInfo")
 
-    # TODO: add tests with --incompatible_autoload_symbols
-    if lt("8.0.0") and not bazel_features.globals.ProtoInfo == ProtoInfo:
-        fail("bazel_features.globals.ProtoInfo != ProtoInfo")
+    if lt("8.0.0") != (bazel_features.globals.ProtoInfo != None):
+        fail("lt(\"8.0.0\") != (bazel_features.globals.ProtoInfo != None)")
 
     if not bazel_features.globals.__TestingOnly_NeverAvailable == None:
         fail("bazel_features.globals.__TestingOnly_NeverAvailable != None")
@@ -69,10 +70,12 @@ def run_test(name):
         fail("bazel_features.globals.CcSharedLibraryInfo == None")
 
     # the pseudo test target that doesn't actually test anything
-    _empty_test(
+    write_file(
+        name = name + "_sh",
+        out = name + ".sh",
+        content = ["exit 0"],
+    )
+    sh_test(
         name = name,
-        is_windows = select({
-            "@bazel_tools//src/conditions:host_windows": True,
-            "//conditions:default": False,
-        }),
+        srcs = [name + ".sh"],
     )

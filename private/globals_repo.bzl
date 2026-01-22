@@ -29,7 +29,7 @@ bzl_library(
             fail("invalid config for:", global_, "expected at least one version")
         value = (
             global_ if not min_version or bazel_version >= parse_version(min_version) else "None"
-        ) if bazel_version < parse_version(max_version) else "None"
+        ) if not max_version or bazel_version < parse_version(max_version) else "None"
 
         # If the legacy_globals is available, we take the value from it.
         # The value is populated by --incompatible_autoload_externally and may apply to older Bazel versions
