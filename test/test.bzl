@@ -3,29 +3,7 @@
 load("//:features.bzl", "bazel_features")
 load("//private:parse.bzl", "parse_version")
 load("//private:util.bzl", "BAZEL_VERSION", "ge", "lt")
-load("@bazel_skylib//rules:write_file.bzl", "write_file")
-load("@rules_shell//shell:sh_test.bzl", "sh_test")
-
-def _empty_test_impl(ctx):
-    extension = ".bat" if ctx.attr.is_windows else ".sh"
-    content = "exit 0" if ctx.attr.is_windows else "#!/usr/bin/env bash\nexit 0"
-    executable = ctx.actions.declare_file(ctx.label.name + extension)
-    ctx.actions.write(
-        output = executable,
-        is_executable = True,
-        content = content,
-    )
-
-    return [DefaultInfo(
-        files = depset([executable]),
-        executable = executable,
-    )]
-
-_empty_test = rule(
-    implementation = _empty_test_impl,
-    attrs = {"is_windows": attr.bool(mandatory = True)},
-    test = True,
-)
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 
 def _assert_lt(a, b):
     if parse_version(a) >= parse_version(b):
@@ -70,12 +48,7 @@ def run_test(name):
         fail("bazel_features.globals.CcSharedLibraryInfo == None")
 
     # the pseudo test target that doesn't actually test anything
-    write_file(
-        name = name + "_sh",
-        out = name + ".sh",
-        content = ["exit 0"],
-    )
-    sh_test(
+    build_test(
         name = name,
-        srcs = [name + ".sh"],
+        targets = ["BUILD.bazel"],
     )
