@@ -4,11 +4,10 @@ bcr_test_module:
     platform:
       - rockylinux8
       - debian11
-      - ubuntu2204
-      - macos
+      - ubuntu2404
       - macos_arm64
       - windows
-    bazel: [6.x, 7.x, 8.x]
+    bazel: [6.*, 7.*, 8.*, 9.*]
   tasks:
     run_test_module:
       name: Run test module
