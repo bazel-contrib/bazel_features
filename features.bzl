@@ -145,6 +145,9 @@ _rules = struct(
     # Whether the new merkle cache exists, which is on by default and handles source directories efficiently.
     # https://github.com/bazelbuild/bazel/commit/30ca50950fdaff032925efe64c2690a9f05e074d
     merkle_cache_v2 = gt("9.0.0-pre.20251014.1"),
+    # Whether ctx.actions.symlink accepts a target_type argument to create junctions on Windows.
+    # https://github.com/bazelbuild/bazel/commit/b9bbda939cddab807e34559cb7ee798febfa3861
+    symlink_action_has_target_type = ge("9.0.0"),
 
     # Internal only, don't use outside rules_java, rules_python & rules_shell.
     # TODO: Use a larger version range after cherry-picking
