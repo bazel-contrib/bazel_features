@@ -148,6 +148,10 @@ _rules = struct(
     # Whether ctx.actions.symlink accepts a target_type argument to create junctions on Windows.
     # https://github.com/bazelbuild/bazel/commit/b9bbda939cddab807e34559cb7ee798febfa3861
     symlink_action_has_target_type = ge("9.0.0"),
+    # Whether ctx.actions.write supports the execution_requirements parameter.
+    # https://github.com/bazelbuild/bazel/commit/2e4abf8b2252512947298300a03750574f050ce6
+    # https://github.com/bazel-io/bazel/commit/825369f7231b11f2d966bf8f3ef2d4905eae1344
+    write_action_has_execution_requirements = ge_same_major("9.1.0") or gt("10.0.0-pre.20260120.1"),
 
     # Internal only, don't use outside rules_java, rules_python & rules_shell.
     # TODO: Use a larger version range after cherry-picking
