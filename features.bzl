@@ -148,6 +148,9 @@ _rules = struct(
     # Whether ctx.actions.symlink accepts a target_type argument to create junctions on Windows.
     # https://github.com/bazelbuild/bazel/commit/b9bbda939cddab807e34559cb7ee798febfa3861
     symlink_action_has_target_type = ge("9.0.0"),
+    # Whether ctx.actions.write accepts a mnemonic parameter.
+    # https://github.com/bazelbuild/bazel/commit/34673f3371229fe310b433cf6ade353b9610f9fb
+    write_action_has_mnemonic = ge("9.0.0-pre.20250710.1"),
     # Whether ctx.actions.write supports the execution_requirements parameter.
     # https://github.com/bazelbuild/bazel/commit/2e4abf8b2252512947298300a03750574f050ce6
     # https://github.com/bazel-io/bazel/commit/825369f7231b11f2d966bf8f3ef2d4905eae1344
