@@ -147,7 +147,7 @@ _rules = struct(
     merkle_cache_v2 = gt("9.0.0-pre.20251014.1"),
     # Whether ctx.actions.symlink accepts a target_type argument to create junctions on Windows.
     # https://github.com/bazelbuild/bazel/commit/b9bbda939cddab807e34559cb7ee798febfa3861
-    symlink_action_has_target_type = ge("9.0.0"),
+    symlink_action_has_target_type = ge_same_major("8.6.0") or ge("9.0.0"),
     # Whether ctx.actions.write accepts a mnemonic parameter.
     # https://github.com/bazelbuild/bazel/commit/34673f3371229fe310b433cf6ade353b9610f9fb
     write_action_has_mnemonic = ge("9.0.0-pre.20250710.1"),
