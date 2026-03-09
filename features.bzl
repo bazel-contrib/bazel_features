@@ -44,6 +44,9 @@ _cc = struct(
     # Whether cc_toolchain has the generate_modmap attribute.
     # https://github.com/bazelbuild/bazel/commit/8028655414a189b6897b1b51e3e43b5711e0af98
     cc_toolchain_has_generate_modmap = gt("9.0.0-pre.20250716.1"),
+    # Whether cc_toolchain is imlemented in starlark.
+    # https://github.com/bazelbuild/bazel/commit/b9f1721f79bb1f21e39d74c13878a33f05fa7034
+    supports_starlarkified_toolchains = gt("9.0.0-pre.20250911"),
 )
 
 _docs = struct(
