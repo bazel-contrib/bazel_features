@@ -47,6 +47,9 @@ _cc = struct(
     # Whether cc_toolchain is imlemented in starlark.
     # https://github.com/bazelbuild/bazel/commit/b9f1721f79bb1f21e39d74c13878a33f05fa7034
     supports_starlarkified_toolchains = gt("9.0.0-pre.20250911"),
+    # Whether cc_common.compile() is in Starlark.
+    # The cut is slightly arbitrary because the migration happened gradually.
+    compile_is_starlark = lt("9.0.0rc1"),
 )
 
 _docs = struct(
