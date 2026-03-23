@@ -10,6 +10,6 @@ use_repo(version, "bazel_features_globals", "bazel_features_version")
 
 bazel_dep(
     name = "protobuf",
-    version = "33.5",
+    version = "33.6",
     dev_dependency = True,
 )
