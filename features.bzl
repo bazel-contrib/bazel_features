@@ -47,6 +47,16 @@ _cc = struct(
     # Whether cc_toolchain is imlemented in starlark.
     # https://github.com/bazelbuild/bazel/commit/b9f1721f79bb1f21e39d74c13878a33f05fa7034
     supports_starlarkified_toolchains = gt("9.0.0-pre.20250911"),
+    # Whether cc_common is taken from rules_cc, in its starlarkified version,
+    # rather than the builtin, typically native cc_common of Bazel 7 and Bazel 8.
+    # One behavioral change between the two comes from
+    # https://github.com/bazelbuild/bazel/pull/25750, and it is expected that more
+    # will accumulate as cc_common in rules_cc evolves further while cc_common in
+    # Bazel 7 and Bazel 8 stays as it is.
+    # The tests in rules_cc need to be able to take this into account.
+    # The compatibility proxy in rules_cc/cc/extensions.bzl:31 switches from native to
+    # rules_cc at Bazel version 9.0.0-pre.20250911.
+    cc_common_is_in_rules_cc = ge("9.0.0-pre.20250911"),
 )
 
 _docs = struct(
