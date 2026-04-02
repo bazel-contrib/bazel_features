@@ -104,6 +104,10 @@ _external_deps = struct(
     # https://github.com/bazelbuild/bazel/commit/c230e39fb225edd206ed0aa07cfcdd8c51589965
     # https://github.com/bazelbuild/bazel/commit/25815511434d17f2843f73e0ff5231f3d80bc44e
     repository_ctx_has_getenv = ge_same_major("7.1.0") or ge("8.0.0-pre.20240128.3"),
+    # Whether rctx.symlink calls get rewritten to be relative symlinks when the repo is cached.
+    # https://github.com/bazelbuild/bazel/commit/2ce32e70485ab807e5188efcb696927ec6606a3e
+    # https://github.com/bazelbuild/bazel/commit/4edfe3276c127f73145018f4973cc422da61f05d
+    repo_rules_relativize_symlinks = ge_same_major("9.0.1") or ge("10.0.0-pre.20260322.2"),
 )
 
 _flags = struct(
