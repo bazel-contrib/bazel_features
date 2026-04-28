@@ -173,6 +173,10 @@ _rules = struct(
     # https://github.com/bazel-io/bazel/commit/825369f7231b11f2d966bf8f3ef2d4905eae1344
     write_action_has_execution_requirements = ge_same_major("9.1.0") or gt("10.0.0-pre.20260120.1"),
 
+    # Whether ctx.configuration.is_tool_configuration is public API
+    # https://github.com/bazelbuild/bazel/commit/84c0253add3784b75ff08b6d049a7f152c7b7532
+    is_tool_configuration_public = ge_same_major("8.7.0") or ge_same_major("9.1.0") or ge("10.0.0-pre.20260329.2"),
+
     # Internal only, don't use outside rules_java, rules_python & rules_shell.
     # TODO: Use a larger version range after cherry-picking
     # https://github.com/bazelbuild/bazel/commit/e81949554f3ecab5e2c4afd79031f498f36427fe
