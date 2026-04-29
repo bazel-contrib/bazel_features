@@ -122,6 +122,9 @@ _java = struct(
     # https://github.com/bazelbuild/bazel/commit/d2783a3c3d1b899beb674e029bfea3519062e8be (HEAD)
     # https://github.com/bazelbuild/bazel/commit/e2249f91ff84541565d8ba841592a0a8a43fcb66 (7.0.0)
     java_info_constructor_module_flags = ge_same_major("7.0.0") or ge("8.0.0-pre.20240101.1"),
+    # Whether the Starlkified java rules are used from rules_java (as opposed to those embedded in Bazel)
+    rules_java_enabled = ge("8.0.0"),
+        
 )
 
 _proto = struct(
