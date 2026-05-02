@@ -57,6 +57,10 @@ _cc = struct(
     # The compatibility proxy in rules_cc/cc/extensions.bzl:31 switches from native to
     # rules_cc at Bazel version 9.0.0-pre.20250911.
     cc_common_is_in_rules_cc = ge("9.0.0-pre.20250911"),
+    # Whether toolchain features can mark paths for path mapping via ${path:...} patterns.
+    # https://github.com/bazelbuild/bazel/commit/41a36ff029340823700e2f4dec0c7cf71fcbdb31
+    # https://github.com/bazelbuild/bazel/commit/39386503ad55cfad38290f45a8d3732d5b2cd9ac
+    supports_path_variable_patterns = ge_same_major("9.1.0") or ge("10.0.0-pre.20260408.3"),
 )
 
 _docs = struct(
