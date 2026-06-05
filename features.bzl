@@ -180,6 +180,9 @@ _rules = struct(
     # Whether ctx.configuration.is_tool_configuration is public API
     # https://github.com/bazelbuild/bazel/commit/84c0253add3784b75ff08b6d049a7f152c7b7532
     is_tool_configuration_public = ge_same_major("8.7.0") or ge_same_major("9.1.0") or ge_same_major("10.0.0-pre.20260329.2"),
+    # Whether constraint_setting has the refines_constraint_value attribute.
+    # https://github.com/bazelbuild/bazel/commit/a59ad366453bb731b255916277d34d5d536ca696
+    constraint_setting_has_refines_constraint_value = gt("10.0.0-pre.20260524.1"),
 
     # Internal only, don't use outside rules_java, rules_python & rules_shell.
     # TODO: Use a larger version range after cherry-picking
