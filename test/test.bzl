@@ -28,6 +28,14 @@ def run_test(name):
     _assert_lt("6.0.0-pre.20241105.2", "6.0.0-pre.20241113.4")
     _assert_lt("6.0.0 some build metadata", "6.1.0 some other build metadata")
     _assert_lt("6.0.0", "")
+    _assert_lt("1.0.0-alpha", "1.0.0-alpha.1")
+    _assert_lt("1.0.0-alpha.1", "1.0.0-alpha.beta")
+    _assert_lt("1.0.0-alpha.beta", "1.0.0-beta")
+    _assert_lt("1.0.0-beta", "1.0.0-beta.2")
+    _assert_lt("1.0.0-beta.2", "1.0.0-beta.11")
+    _assert_lt("1.0.0-beta.11", "1.0.0-rc.1")
+    _assert_lt("1.0.0-rc.1", "1.0.0")
+    _assert_lt("10.0.0-pre.20260524.1", "10.0.0-pre-db077161e43484e4cb0f2270374ee33d05f3690d")
 
     # a smoke test on the actual current Bazel version
     if not ge("0.0.1"):
