@@ -14,6 +14,19 @@ def _partition(s):
             return s[:i], s[i:]
     return s, ""
 
+def _parse_prerelease(prerelease):
+    # Parses a SemVer prerelease string into a list of comparable identifiers, following the
+    # precedence rules at https://semver.org/#spec-item-11.
+    if not prerelease:
+        return []
+    identifiers = []
+    for ident in prerelease.split("."):
+        if ident.isdigit():
+            identifiers.append((0, int(ident)))
+        else:
+            identifiers.append((1, ident))
+    return identifiers
+
 def parse_version(v):
     """Parses the given Bazel version string into a comparable value.
 
@@ -35,4 +48,4 @@ def parse_version(v):
         # feature detection. This allows for realistic testing of candidates and avoids the need to
         # specify "rc1" on every version.
         prerelease = ""
-    return [_safe_int(s, v) for s in segments], not prerelease, prerelease
+    return [_safe_int(s, v) for s in segments], not prerelease, _parse_prerelease(prerelease)
