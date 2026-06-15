@@ -112,6 +112,12 @@ _external_deps = struct(
     # https://github.com/bazelbuild/bazel/commit/2ce32e70485ab807e5188efcb696927ec6606a3e
     # https://github.com/bazelbuild/bazel/commit/4edfe3276c127f73145018f4973cc422da61f05d
     repo_rules_relativize_symlinks = ge_same_major("9.0.1") or ge("10.0.0-pre.20260322.2"),
+    # Whether facts are supported
+    #
+    # Only use this when a module_ctx is not available.
+    # Otherwise use `hasattr(module_ctx, "facts")`
+    # https://github.com/bazelbuild/bazel/commit/0b3c45f46d144d07fd4d562f55069bba0cd49a09
+    has_facts = ge("8.5.0"),
 )
 
 _flags = struct(
