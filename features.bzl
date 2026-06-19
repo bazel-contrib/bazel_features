@@ -61,6 +61,10 @@ _cc = struct(
     # https://github.com/bazelbuild/bazel/commit/41a36ff029340823700e2f4dec0c7cf71fcbdb31
     # https://github.com/bazelbuild/bazel/commit/39386503ad55cfad38290f45a8d3732d5b2cd9ac
     supports_path_variable_patterns = ge_same_major("9.1.0") or ge("10.0.0-pre.20260408.3"),
+    # Whether cc_internal.get_link_args() supports the param param_file_name.
+    # https://github.com/bazelbuild/bazel/commit/d788aa269a3300771696a0f9e00868a43cadf7d3
+    get_link_args_has_param_file_name = ge("10.0.0-pre.20260608.1"),
+    
 )
 
 _docs = struct(
