@@ -10,6 +10,13 @@ _apple = struct(
     xcode_config_migrated = ge("8.0.0"),
 )
 
+_aspects = struct(
+    # Whether toolchains_aspects accept "*" to propagate to all toolchains
+    # 8.8.0 : https://github.com/bazelbuild/bazel/commit/dd6a292e2b160bbd35b9d9b67d21971f4efeb94c
+    # 9.2.0+ : https://github.com/bazelbuild/bazel/commit/584eeed4de4e0c76e451d0212ab582e2109ceacb
+    supports_toolchains_aspects_star = ge_same_major("8.8.0") or ge("9.2.0-rc.1")
+)
+
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
     # on find_cpp_toolchain are available (#17308).
@@ -217,6 +224,7 @@ _toolchains = struct(
 
 bazel_features = struct(
     apple = _apple,
+    aspects = _aspects,
     cc = _cc,
     docs = _docs,
     external_deps = _external_deps,
