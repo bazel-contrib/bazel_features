@@ -10,13 +10,6 @@ _apple = struct(
     xcode_config_migrated = ge("8.0.0"),
 )
 
-_aspects = struct(
-    # Whether toolchains_aspects accept "*" to propagate to all toolchains
-    # 8.8.0 : https://github.com/bazelbuild/bazel/commit/dd6a292e2b160bbd35b9d9b67d21971f4efeb94c
-    # 9.2.0+ : https://github.com/bazelbuild/bazel/commit/584eeed4de4e0c76e451d0212ab582e2109ceacb
-    supports_toolchains_aspects_star = ge_same_major("8.8.0") or ge("9.2.0rc1")
-)
-
 _cc = struct(
     # Whether @bazel_tools//tools/cpp:optional_current_cc_toolchain and the `mandatory` parameter
     # on find_cpp_toolchain are available (#17308).
@@ -71,7 +64,6 @@ _cc = struct(
     # Internal only, don't use outside rules_cc.
     # https://github.com/bazelbuild/bazel/commit/d788aa269a3300771696a0f9e00868a43cadf7d3
     _get_link_args_has_param_file_name = ge("10.0.0-pre.20260608.1"),
-    
 )
 
 _docs = struct(
@@ -205,6 +197,11 @@ _rules = struct(
     # TODO: Use a larger version range after cherry-picking
     # https://github.com/bazelbuild/bazel/commit/e81949554f3ecab5e2c4afd79031f498f36427fe
     _has_launcher_maker_toolchain = ge_same_major("8.3.0") or ge("9.0.0-pre.20250516.1"),
+
+    # Whether toolchains_aspects accept "*" to propagate to all toolchains
+    # 8.8.0 : https://github.com/bazelbuild/bazel/commit/dd6a292e2b160bbd35b9d9b67d21971f4efeb94c
+    # 9.2.0+ : https://github.com/bazelbuild/bazel/commit/584eeed4de4e0c76e451d0212ab582e2109ceacb
+    supports_toolchains_aspects_star = ge_same_major("8.8.0") or ge("9.2.0rc1"),
 )
 
 _toolchains = struct(
@@ -224,7 +221,6 @@ _toolchains = struct(
 
 bazel_features = struct(
     apple = _apple,
-    aspects = _aspects,
     cc = _cc,
     docs = _docs,
     external_deps = _external_deps,
