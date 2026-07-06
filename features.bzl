@@ -14,7 +14,7 @@ _aspects = struct(
     # Whether toolchains_aspects accept "*" to propagate to all toolchains
     # 8.8.0 : https://github.com/bazelbuild/bazel/commit/dd6a292e2b160bbd35b9d9b67d21971f4efeb94c
     # 9.2.0+ : https://github.com/bazelbuild/bazel/commit/584eeed4de4e0c76e451d0212ab582e2109ceacb
-    supports_toolchains_aspects_star = ge_same_major("8.8.0") or ge("9.2.0-rc.1")
+    supports_toolchains_aspects_star = ge_same_major("8.8.0") or ge("9.2.0rc1")
 )
 
 _cc = struct(
