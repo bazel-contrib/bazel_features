@@ -43,7 +43,7 @@ bzl_library(
 
     rctx.file("globals.bzl", "\n".join(lines))
     if hasattr(rctx, "repo_metadata"):
-        return rctx.repo_metadata(reproducible = True)
+        return rctx.repo_metadata(reproducible = False)
     return None
 
 globals_repo = repository_rule(

@@ -17,7 +17,7 @@ bzl_library(
     )
     rctx.file("version.bzl", "version = '" + native.bazel_version + "'")
     if hasattr(rctx, "repo_metadata"):
-        return rctx.repo_metadata(reproducible = True)
+        return rctx.repo_metadata(reproducible = False)
     return None
 
 version_repo = repository_rule(
