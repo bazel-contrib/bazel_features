@@ -28,6 +28,11 @@ jobs:
         bazelversion: [6.*, 7.*, 8.*, 9.*, last_green]
         folder: ["test/bcr_test", "."]
         include:
+          # Bazel 8.4 exposes a legacy JavaInfo after removing the public global.
+          - os: ubuntu-latest
+            bazelversion: 8.4.0
+            folder: "."
+            test_args: --incompatible_autoload_externally=+JavaInfo --incompatible_disable_autoloads_in_main_repo
           # bazel_features is intended to be OS-agnostic, so we only test other OSes with the latest Bazel version
           - os: macos-latest
             bazelversion: 9.*
@@ -53,4 +58,4 @@ jobs:
       - name: bazel test //...
         working-directory: ${{ matrix.folder }}
         shell: bash
-        run: USE_BAZEL_VERSION=${{ matrix.bazelversion }} bazel ${{ matrix.extra_arg }} test //...
+        run: USE_BAZEL_VERSION=${{ matrix.bazelversion }} bazel ${{ matrix.extra_arg }} test //... ${{ matrix.test_args }}

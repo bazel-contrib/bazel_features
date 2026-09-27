@@ -1,5 +1,6 @@
 """Contains the internal repository rule globals_repo."""
 
+load("//private:globals.bzl", "GLOBALS")
 load("//private:parse.bzl", "parse_version")
 
 def _globals_repo_impl(rctx):
@@ -22,7 +23,7 @@ bzl_library(
     bazel_version = parse_version(native.bazel_version)
 
     lines = ["globals = struct("]
-    for global_, (min_version, max_version) in rctx.attr.globals.items():
+    for global_, (min_version, max_version, autoloadable) in GLOBALS.items():
         if not _is_valid_identifier(global_):
             fail("Invalid global name: %s" % global_)
         if not min_version and not max_version:
@@ -35,9 +36,11 @@ bzl_library(
         else:
             value = "None"
 
-        # If the legacy_globals is available, we take the value from it.
-        # The value is populated by --incompatible_autoload_externally and may apply to older Bazel versions
-        lines.append("    %s = getattr(getattr(native, 'legacy_globals', None), '%s', %s)," % (global_, global_, value))
+        if autoloadable:
+            # --incompatible_autoload_externally preserves original globals in
+            # native.legacy_globals for repositories exempt from autoloading.
+            value = "getattr(getattr(native, 'legacy_globals', None), '%s', %s)" % (global_, value)
+        lines.append("    %s = %s," % (global_, value))
 
     lines.append(")")
 
@@ -50,11 +53,6 @@ globals_repo = repository_rule(
     _globals_repo_impl,
     # Force reruns on server restarts to keep native.bazel_version up-to-date.
     local = True,
-    attrs = {
-        "globals": attr.string_list_dict(
-            mandatory = True,
-        ),
-    },
 )
 
 def _is_valid_identifier(s):

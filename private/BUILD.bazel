@@ -32,6 +32,7 @@ bzl_library(
     srcs = ["globals_repo.bzl"],
     visibility = ["//:__subpackages__"],
     deps = [
+        ":globals",
         ":parse",
     ],
 )
@@ -47,7 +48,6 @@ bzl_library(
     srcs = ["repos.bzl"],
     visibility = ["//:__subpackages__"],
     deps = [
-        ":globals",
         ":globals_repo",
         ":version_repo",
     ],

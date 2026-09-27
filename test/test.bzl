@@ -1,9 +1,9 @@
 """Provides a macro to do some loading-time test assertions."""
 
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("//:features.bzl", "bazel_features")
 load("//private:parse.bzl", "parse_version")
 load("//private:util.bzl", "BAZEL_VERSION", "ge", "lt")
-load("@bazel_skylib//rules:build_test.bzl", "build_test")
 
 def _assert_lt(a, b):
     if parse_version(a) >= parse_version(b):
@@ -46,6 +46,13 @@ def run_test(name):
 
     if lt("8.0.0") != (bazel_features.globals.ProtoInfo != None):
         fail("lt(\"8.0.0\") != (bazel_features.globals.ProtoInfo != None)")
+
+    legacy_java = getattr(getattr(native, "legacy_globals", None), "JavaInfo", None)
+    if legacy_java != None:
+        if bazel_features.globals.JavaInfo != legacy_java:
+            fail("expected JavaInfo {}, got {}".format(legacy_java, bazel_features.globals.JavaInfo))
+    elif lt("8.0.0") != (bazel_features.globals.JavaInfo != None):
+        fail("lt(\"8.0.0\") != (bazel_features.globals.JavaInfo != None)")
 
     if not bazel_features.globals.__TestingOnly_NeverAvailable == None:
         fail("bazel_features.globals.__TestingOnly_NeverAvailable != None")
