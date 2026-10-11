@@ -191,7 +191,8 @@ _rules = struct(
     is_tool_configuration_public = ge_same_major("8.7.0") or ge_same_major("9.1.0") or ge_same_major("10.0.0-pre.20260329.2"),
     # Whether constraint_setting has the refines_constraint_value attribute.
     # https://github.com/bazelbuild/bazel/commit/a59ad366453bb731b255916277d34d5d536ca696
-    constraint_setting_has_refines_constraint_value = gt("10.0.0-pre.20260524.1"),
+    # https://github.com/bazelbuild/bazel/commit/319aa51a8cbe4474d3ac6871ecedfd2e66b5fab2
+    constraint_setting_has_refines_constraint_value = ge_same_major("9.2.0") or gt("10.0.0-pre.20260524.1"),
 
     # Whether toolchains_aspects accept "*" to propagate to all toolchains
     # 8.8.0 : https://github.com/bazelbuild/bazel/commit/dd6a292e2b160bbd35b9d9b67d21971f4efeb94c
