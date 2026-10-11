@@ -192,6 +192,10 @@ _rules = struct(
     # Whether constraint_setting has the refines_constraint_value attribute.
     # https://github.com/bazelbuild/bazel/commit/a59ad366453bb731b255916277d34d5d536ca696
     constraint_setting_has_refines_constraint_value = gt("10.0.0-pre.20260524.1"),
+    # Whether the flags attribute of the platform rule takes effect. The attribute was added in
+    # 8.0.0-pre.20240401.3, but platforms only apply their flags since this commit.
+    # https://github.com/bazelbuild/bazel/commit/ac05b298a1c2f98b05c603f7a6738c761761edb6
+    platform_has_flags = ge("8.0.0-pre.20240618.2"),
 
     # Whether toolchains_aspects accept "*" to propagate to all toolchains
     # 8.8.0 : https://github.com/bazelbuild/bazel/commit/dd6a292e2b160bbd35b9d9b67d21971f4efeb94c
