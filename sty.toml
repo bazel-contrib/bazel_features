@@ -1,0 +1,3 @@
+[type-interfaces]
+"private/parse.bzl" = "private/parse.bzli"
+"private/util.bzl" = "private/util.bzli"
