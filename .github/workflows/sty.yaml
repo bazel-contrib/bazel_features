@@ -1,0 +1,29 @@
+name: Starlark types
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sty:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: tamird/sty@2047adc3c9cd1a3f2a305d9713e6cd5c0494fc9c
+        continue-on-error: true
+        with:
+          files: |
+            private/parse.bzl
+            private/util.bzl
+            features.bzl
