@@ -4,6 +4,8 @@ strict-generic-narrowing = true
 [type-interfaces]
 "private/parse.bzl" = "private/parse.bzli"
 "private/util.bzl" = "private/util.bzli"
+"private/globals_repo.bzl" = "private/globals_repo.bzli"
+"private/version_repo.bzl" = "private/version_repo.bzli"
 
 [rules]
 missing-parameter-annotation = "error"
@@ -13,3 +15,6 @@ unsound-assignment = "error"
 unsound-return-statement = "error"
 explicit-any = "error"
 non-static-type = "error"
+blanket-ignore-comment = "error"
+possibly-unresolved-reference = "error"
+division-by-zero = "error"

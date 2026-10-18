@@ -20,10 +20,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - uses: tamird/sty@2047adc3c9cd1a3f2a305d9713e6cd5c0494fc9c
-        continue-on-error: true
+      - uses: tamird/sty@f4e53ac0b37431604098226abd8b86450f245cad
         with:
+          audit-loads: true
           files: |
             private/parse.bzl
             private/util.bzl
             features.bzl
+            private/globals_repo.bzl
+            private/version_repo.bzl

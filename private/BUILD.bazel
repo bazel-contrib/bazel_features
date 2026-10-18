@@ -1,8 +1,10 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 exports_files([
+    "globals_repo.bzli",
     "parse.bzli",
     "util.bzli",
+    "version_repo.bzli",
 ])
 
 filegroup(
