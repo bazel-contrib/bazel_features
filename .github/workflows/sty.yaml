@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - uses: tamird/sty@f4e53ac0b37431604098226abd8b86450f245cad
+      - uses: tamird/sty@ec7c566c6abed0c87bc1bd5c82d327371df7fa81
         with:
           audit-loads: true
           files: |
