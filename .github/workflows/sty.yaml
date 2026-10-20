@@ -23,4 +23,6 @@ jobs:
       - uses: tamird/sty@f9027c84126ec3ed1d498b36fe6e407a50e87506
         with:
           audit-loads: true
-          files: features.bzl
+          files: |
+            features.bzl
+            private/globals.bzl
