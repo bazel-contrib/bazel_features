@@ -1,0 +1,3 @@
+"""Repositories used to detect Bazel features."""
+
+def bazel_features_repos() -> None: ...

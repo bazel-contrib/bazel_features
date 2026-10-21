@@ -20,9 +20,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - uses: tamird/sty@2d5ec854f749ac2465a89896d4c6b1b876057c69
+      - uses: tamird/sty@3e47bd794feabe1ce777221c23a7217573b1ac3f
         with:
           audit-loads: true
+          # Other production sources are checked through their registered interfaces.
+          # Test Starlark is exercised by the Bazel CI matrix.
           files: |
             features.bzl
+            private/extensions.bzl
             private/globals.bzl
