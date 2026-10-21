@@ -2,14 +2,8 @@
 strict-generic-narrowing = true
 require-valid-suppressions = true
 
-[type-interfaces]
-"deps.bzl" = "deps.bzli"
-"private/docs.bzl" = "private/docs.bzli"
-"private/parse.bzl" = "private/parse.bzli"
-"private/util.bzl" = "private/util.bzli"
-"private/globals_repo.bzl" = "private/globals_repo.bzli"
-"private/repos.bzl" = "private/repos.bzli"
-"private/version_repo.bzl" = "private/version_repo.bzli"
+[[stub-packages]]
+manifest = "stubs.toml"
 
 [rules]
 missing-parameter-annotation = "error"
