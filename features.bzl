@@ -66,7 +66,7 @@ _cc = struct(
     _get_link_args_has_param_file_name = ge("10.0.0-pre.20260608.1"),
     # Whether map_directory() can handle additional_params needed for create_cc_compile_action
     # https://github.com/bazelbuild/bazel/commit/0d277213563ce36408f105f01b8f08b043c5fbaf
-    map_directory_supports_cc_compile = ge("10.0.0rc1")
+    _map_directory_supports_cc_compile = ge("10.0.0rc1")
 )
 
 _docs = struct(
