@@ -2,6 +2,7 @@
 strict-generic-narrowing = true
 
 [type-interfaces]
+"private/docs.bzl" = "private/docs.bzli"
 "private/parse.bzl" = "private/parse.bzli"
 "private/util.bzl" = "private/util.bzli"
 "private/globals_repo.bzl" = "private/globals_repo.bzli"

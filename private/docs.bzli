@@ -1,0 +1,6 @@
+"""Conditionally generate Starlark documentation."""
+
+def starlark_doc_extract__maybe(
+    name: str,
+    **kwargs: Unpack[KeywordArgs[native.starlark_doc_extract, "name"]],
+) -> None: ...
