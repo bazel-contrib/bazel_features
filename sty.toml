@@ -5,6 +5,10 @@ require-valid-suppressions = true
 [[stub-packages]]
 manifest = "stubs.toml"
 
+[[stub-packages]]
+manifest = "@bazel_tools_stubs//:stubs.toml"
+allow-unversioned = true
+
 [rules]
 missing-parameter-annotation = "error"
 missing-return-annotation = "error"

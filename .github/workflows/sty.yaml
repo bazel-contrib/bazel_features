@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - uses: tamird/sty@3e47bd794feabe1ce777221c23a7217573b1ac3f
+      - uses: tamird/sty@c6fd17ce572ff4ea6bd781d03ab7d1c593a118fe
         with:
           audit-loads: true
           # Other production sources are checked through their registered interfaces.
