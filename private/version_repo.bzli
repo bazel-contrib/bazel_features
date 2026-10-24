@@ -1,0 +1,3 @@
+"""Output metadata for the generated Bazel version repository."""
+
+def _version_repo_impl(rctx: repository_ctx) -> repo_metadata | None: ...

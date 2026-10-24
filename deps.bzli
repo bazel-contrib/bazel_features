@@ -1,0 +1,3 @@
+"""WORKSPACE dependencies for bazel_features."""
+
+def bazel_features_deps() -> None: ...

@@ -1,0 +1,7 @@
+"""Inputs and output metadata for the generated Bazel globals repository."""
+
+type _GlobalsAttrs = struct[{"globals": dict[str, list[str]]}, ...]
+
+def _globals_repo_impl(rctx: repository_ctx[_GlobalsAttrs]) -> repo_metadata | None: ...
+
+def _is_valid_identifier(s: str) -> bool: ...

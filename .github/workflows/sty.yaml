@@ -1,0 +1,31 @@
+name: Starlark types
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sty:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: tamird/sty@c6fd17ce572ff4ea6bd781d03ab7d1c593a118fe
+        with:
+          audit-loads: true
+          # Other production sources are checked through their registered interfaces.
+          # Test Starlark is exercised by the Bazel CI matrix.
+          files: |
+            features.bzl
+            private/extensions.bzl
+            private/globals.bzl
