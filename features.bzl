@@ -138,6 +138,10 @@ _java = struct(
     # https://github.com/bazelbuild/bazel/commit/d2783a3c3d1b899beb674e029bfea3519062e8be (HEAD)
     # https://github.com/bazelbuild/bazel/commit/e2249f91ff84541565d8ba841592a0a8a43fcb66 (7.0.0)
     java_info_constructor_module_flags = ge_same_major("7.0.0") or ge("8.0.0-pre.20240101.1"),
+    # Whether the toolchain types in @bazel_tools//tools/jdk are aliases of the ones in
+    # @rules_java//toolchains. 10.0.x still defines them in @bazel_tools.
+    # https://github.com/bazelbuild/bazel/pull/32196
+    toolchain_types_in_rules_java = ge("10.0.0-pre.20261104.1") and not ge_same_major("10.0.0"),
 )
 
 _proto = struct(
