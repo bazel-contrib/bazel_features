@@ -141,7 +141,7 @@ _java = struct(
     # Whether the toolchain types in @bazel_tools//tools/jdk are aliases of the ones in
     # @rules_java//toolchains. 10.0.x still defines them in @bazel_tools.
     # https://github.com/bazelbuild/bazel/pull/32196
-    toolchain_types_in_rules_java = ge("10.0.0-pre.20261104.1") and not ge_same_major("10.0.0"),
+    toolchain_types_in_rules_java = gt("10.0.0-pre.20261006.3") and not ge_same_major("10.0.0"),
 )
 
 _proto = struct(
