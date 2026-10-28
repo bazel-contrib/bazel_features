@@ -147,6 +147,9 @@ _proto = struct(
 )
 
 _rules = struct(
+    # Whether the native label_flag and label_setting rules have a scope attribute.
+    # https://github.com/bazelbuild/bazel/commit/aee948b9ef8a003846d6867bb018219ce580027e
+    label_build_setting_has_scope = ge("9.0.0-pre.20250106.2"),
     # Whether runfiles may contain all characters. Support for all characters added in:
     # https://github.com/bazelbuild/bazel/commit/c9115305cb81e7fe645f91ca790642cab136b2a1
     all_characters_allowed_in_runfiles = ge("7.4.0"),
