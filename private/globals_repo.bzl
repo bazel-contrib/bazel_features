@@ -2,7 +2,10 @@
 
 load("//private:parse.bzl", "parse_version")
 
+# TODO(https://github.com/bazelbuild/bazel/issues/32020): Use a native repository context
+# annotation when supported Bazel versions expose it.
 def _globals_repo_impl(rctx):
+    # type: (repository_ctx[struct[{"globals": dict[str, list[str]]}, ...]]) -> repo_metadata | None
     rctx.file(
         "BUILD.bazel",
         """\
@@ -58,6 +61,7 @@ globals_repo = repository_rule(
 )
 
 def _is_valid_identifier(s):
+    # type: (str) -> bool
     if not s or s[0].isdigit():
         return False
     return all([c.isalnum() or c == "_" for c in s.elems()])

@@ -5,6 +5,7 @@ load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 load("//private:repos.bzl", "bazel_features_repos")
 
 def bazel_features_deps():
+    # type: () -> None
     bazel_features_repos()
     maybe(
         http_archive,

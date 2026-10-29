@@ -6,6 +6,7 @@ load(":globals_repo.bzl", "globals_repo")
 load(":version_repo.bzl", "version_repo")
 
 def bazel_features_repos():
+    # type: () -> None
     maybe(
         version_repo,
         name = "bazel_features_version",
