@@ -1,0 +1,53 @@
+name: Starlark types
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sty:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: List implementations in each workspace
+        id: implementations
+        run: |
+          git -c core.quotePath=false ls-files -- '*.bzl' ':(exclude)test/bcr_test/**' > "$RUNNER_TEMP/sty-root-files"
+          git -c core.quotePath=false -C test/bcr_test ls-files -- '*.bzl' > "$RUNNER_TEMP/sty-bcr-files"
+      - uses: &sty tamird/sty@2ab74c830937d3ca85165ca0e9a02a42400ad9e5
+        with:
+          advisory-files-from: ${{ runner.temp }}/sty-root-files
+          audit-loads: true
+          files: |
+            deps.bzl
+            features.bzl
+            private/docs.bzl
+            private/extensions.bzl
+            private/globals.bzl
+            private/globals_repo.bzl
+            private/parse.bzl
+            private/repos.bzl
+            private/util.bzl
+            private/version_repo.bzl
+      - name: Check the BCR example
+        if: ${{ !cancelled() && steps.implementations.outcome == 'success' }}
+        uses: *sty
+        with:
+          working-directory: test/bcr_test
+          artifact-name: sty-bcr-test
+          # sty uses dump_repo_mapping, which this workspace's Bazel 7.0.2 lacks.
+          bazel-version: '7.1.0'
+          audit-loads: true
+          advisory-only: true
+          advisory-files-from: ${{ runner.temp }}/sty-bcr-files
