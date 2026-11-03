@@ -1,0 +1,10 @@
+[analysis]
+strict-generic-narrowing = true
+require-valid-suppressions = true
+
+[[stub-packages]]
+manifest = "@bazel_tools_stubs//:stubs.toml"
+allow-unversioned = true
+
+[rules]
+strict = "error"
