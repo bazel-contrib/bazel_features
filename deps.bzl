@@ -4,7 +4,10 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 load("//private:repos.bzl", "bazel_features_repos")
 
+# TODO(https://github.com/bazelbuild/bazel/pull/30373): Use native annotations
+# once the supported versions all parse them (Bazel 6 does not).
 def bazel_features_deps():
+    # type: () -> None
     bazel_features_repos()
     maybe(
         http_archive,
