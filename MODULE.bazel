@@ -12,3 +12,12 @@ bazel_dep(
     version = "33.6",
     dev_dependency = True,
 )
+
+bazel_dep(name = "bazel_tools_stubs", dev_dependency = True)
+
+archive_override(
+    module_name = "bazel_tools_stubs",
+    integrity = "sha256-Di3Cuqfw3Amt/k9MFn5WKe128eboG4LZIL0pfYkpjjU=",
+    strip_prefix = "sty-c6fd17ce572ff4ea6bd781d03ab7d1c593a118fe/crates/starpls_bazel/data/bazel_tools",
+    urls = ["https://github.com/tamird/sty/archive/c6fd17ce572ff4ea6bd781d03ab7d1c593a118fe.tar.gz"],
+)
