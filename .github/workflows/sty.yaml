@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@v7
         id: checkout
         with:
           persist-credentials: false
-      - uses: &sty tamird/sty@d400a00807b3c7f7b2ac82bf1e1e6a16db0290e3
+      - uses: &sty tamird/sty@sty-action-v0.2.0
         with:
           advisory-pathspecs: |
             *.bzl
