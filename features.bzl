@@ -66,7 +66,9 @@ _cc = struct(
     _get_link_args_has_param_file_name = ge("10.0.0-pre.20260608.1"),
     # Whether map_directory() can handle additional_params needed for create_cc_compile_action
     # https://github.com/bazelbuild/bazel/commit/0d277213563ce36408f105f01b8f08b043c5fbaf
-    _map_directory_supports_cc_compile = ge("10.0.0rc1") or ge("10.0.0-pre.20261001.2")
+    _map_directory_supports_cc_compile = ge("10.0.0rc1") or ge("10.0.0-pre.20261001.2"),
+    # Placeholder for the migration.
+    _toolchain_type_in_rules_cc = False,
 )
 
 _docs = struct(
@@ -138,6 +140,9 @@ _java = struct(
     # https://github.com/bazelbuild/bazel/commit/d2783a3c3d1b899beb674e029bfea3519062e8be (HEAD)
     # https://github.com/bazelbuild/bazel/commit/e2249f91ff84541565d8ba841592a0a8a43fcb66 (7.0.0)
     java_info_constructor_module_flags = ge_same_major("7.0.0") or ge("8.0.0-pre.20240101.1"),
+    # Internal only, don't use outside rules_java.
+    # Placeholder for the migration.
+    _toolchain_type_in_rules_java = False,
 )
 
 _proto = struct(
@@ -213,6 +218,8 @@ _rules = struct(
     # TODO: Use a larger version range after cherry-picking
     # https://github.com/bazelbuild/bazel/commit/e81949554f3ecab5e2c4afd79031f498f36427fe
     _has_launcher_maker_toolchain = ge_same_major("8.3.0") or ge("9.0.0-pre.20250516.1"),
+    # Placeholder for the migration.
+    _toolchain_type_in_rules_python = False,
 )
 
 _toolchains = struct(
