@@ -155,6 +155,12 @@ _rules = struct(
     # Whether the native label_flag and label_setting rules have a scope attribute.
     # https://github.com/bazelbuild/bazel/commit/aee948b9ef8a003846d6867bb018219ce580027e
     label_build_setting_has_scope = ge("9.0.0-pre.20250106.2"),
+    # Whether build settings can use scope = "exec:--<host_flag>". Earlier versions accept it, but
+    # every Starlark transition explicitly sets both flags to their default values, and so does
+    # setting the build setting on the command line for the host flag. This splits otherwise
+    # identical configurations.
+    # https://github.com/bazelbuild/bazel/commit/8dca1199460bb158dab7ff91398f0f813d26d71c
+    build_setting_supports_exec_scope = gt("11.0.0-pre.20261022.3"),
     # Whether runfiles may contain all characters. Support for all characters added in:
     # https://github.com/bazelbuild/bazel/commit/c9115305cb81e7fe645f91ca790642cab136b2a1
     all_characters_allowed_in_runfiles = ge("7.4.0"),
