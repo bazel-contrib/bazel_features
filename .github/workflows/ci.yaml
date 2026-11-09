@@ -25,14 +25,14 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        bazelversion: [6.*, 7.*, 8.*, 9.*, last_green]
+        bazelversion: [6.*, 7.*, 8.*, 9.*, 10.*, last_green]
         folder: ["test/bcr_test", "."]
         include:
           # bazel_features is intended to be OS-agnostic, so we only test other OSes with the latest Bazel version
           - os: macos-latest
-            bazelversion: 9.*
+            bazelversion: 10.*
           - os: windows-latest
-            bazelversion: 9.*
+            bazelversion: 10.*
           - bazelversion: 6.*
             # Protobuf isn't provided by the WORKSPACE setup, but referenced in the .bazelrc file.
             extra_arg: "--ignore_all_rc_files"
