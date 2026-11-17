@@ -1,7 +1,12 @@
 """Defines all the features this module supports detecting."""
 
 load("@bazel_features_globals//:globals.bzl", "globals")
-load("//private:util.bzl", "ge", "ge_same_major", "gt", "lt")
+load("//private:util.bzl", "ge", "ge_same_major", "gt", "incompatible", "lt")
+
+# Whether the toolchain types in @bazel_tools are aliases of the types in rules_cc, rules_java and
+# rules_python. Since the Bazel versions that do this aren't known yet, this defaults to False
+# and can be enabled with --repo_env=BAZEL_INCOMPATIBLE_TOOLCHAIN_TYPES_IN_RULES=1.
+_TOOLCHAIN_TYPES_IN_RULES = incompatible("BAZEL_INCOMPATIBLE_TOOLCHAIN_TYPES_IN_RULES", default = False)
 
 _apple = struct(
     # From Bazel 8.0.0 on, the `xcode_version_flag` is available and the `XcodeVersionConfig`
@@ -67,8 +72,8 @@ _cc = struct(
     # Whether map_directory() can handle additional_params needed for create_cc_compile_action
     # https://github.com/bazelbuild/bazel/commit/0d277213563ce36408f105f01b8f08b043c5fbaf
     _map_directory_supports_cc_compile = ge("10.0.0rc1") or ge("10.0.0-pre.20261001.2"),
-    # Placeholder for the migration.
-    _toolchain_type_in_rules_cc = False,
+    # Placeholder for the migration, see _TOOLCHAIN_TYPES_IN_RULES.
+    _toolchain_type_in_rules_cc = _TOOLCHAIN_TYPES_IN_RULES,
 )
 
 _docs = struct(
@@ -141,8 +146,8 @@ _java = struct(
     # https://github.com/bazelbuild/bazel/commit/e2249f91ff84541565d8ba841592a0a8a43fcb66 (7.0.0)
     java_info_constructor_module_flags = ge_same_major("7.0.0") or ge("8.0.0-pre.20240101.1"),
     # Internal only, don't use outside rules_java.
-    # Placeholder for the migration.
-    _toolchain_type_in_rules_java = False,
+    # Placeholder for the migration, see _TOOLCHAIN_TYPES_IN_RULES.
+    _toolchain_type_in_rules_java = _TOOLCHAIN_TYPES_IN_RULES,
 )
 
 _proto = struct(
@@ -218,8 +223,8 @@ _rules = struct(
     # TODO: Use a larger version range after cherry-picking
     # https://github.com/bazelbuild/bazel/commit/e81949554f3ecab5e2c4afd79031f498f36427fe
     _has_launcher_maker_toolchain = ge_same_major("8.3.0") or ge("9.0.0-pre.20250516.1"),
-    # Placeholder for the migration.
-    _toolchain_type_in_rules_python = False,
+    # Placeholder for the migration, see _TOOLCHAIN_TYPES_IN_RULES.
+    _toolchain_type_in_rules_python = _TOOLCHAIN_TYPES_IN_RULES,
 )
 
 _toolchains = struct(
