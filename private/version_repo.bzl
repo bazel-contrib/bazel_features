@@ -1,7 +1,6 @@
 """Contains the internal repository rule version_repo."""
 
-# Environment variables that toggle incompatible changes in Bazel that can't be
-# detected from the Bazel version alone. Set them with --repo_env.
+# Environment variables that toggle incompatible changes tracked as features.
 INCOMPATIBLE_ENV_VARS = [
     # If enabled, the toolchain types in @bazel_tools are aliases of the types
     # in rules_cc, rules_java and rules_python.
