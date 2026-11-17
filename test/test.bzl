@@ -1,9 +1,9 @@
 """Provides a macro to do some loading-time test assertions."""
 
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("//:features.bzl", "bazel_features")
 load("//private:parse.bzl", "parse_version")
-load("//private:util.bzl", "BAZEL_VERSION", "ge", "lt")
-load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("//private:util.bzl", "BAZEL_VERSION", "ge", "lt", "parse_incompatible_env")
 
 def _assert_lt(a, b):
     if parse_version(a) >= parse_version(b):
@@ -12,6 +12,11 @@ def _assert_lt(a, b):
 def _assert_eq(a, b):
     if parse_version(a) != parse_version(b):
         fail("expected '{}' to be equal to '{}', but was not the case".format(a, b))
+
+def _assert_incompatible_env(value, default, expected):
+    actual = parse_incompatible_env("TEST_VAR", value, default)
+    if actual != expected:
+        fail("expected parse_incompatible_env('TEST_VAR', {}, {}) to be {}, got {}".format(repr(value), default, expected, actual))
 
 def run_test(name):
     """Performs some loading-time assertions about bazel_features' APIs, and creates a fake test target.
@@ -36,6 +41,24 @@ def run_test(name):
     _assert_lt("1.0.0-beta.11", "1.0.0-rc.1")
     _assert_lt("1.0.0-rc.1", "1.0.0")
     _assert_lt("10.0.0-pre.20260524.1", "10.0.0-pre-db077161e43484e4cb0f2270374ee33d05f3690d")
+
+    # parsing of environment variables toggling incompatible changes
+    for default in (False, True):
+        _assert_incompatible_env(None, default, default)
+        _assert_incompatible_env("", default, default)
+        for value in ("1", "true", "True"):
+            _assert_incompatible_env(value, default, True)
+        for value in ("0", "false", "False"):
+            _assert_incompatible_env(value, default, False)
+
+    # the toolchain type migrations are toggled together
+    toolchain_types_in_rules = [
+        bazel_features.cc._toolchain_type_in_rules_cc,
+        bazel_features.java._toolchain_type_in_rules_java,
+        bazel_features.rules._toolchain_type_in_rules_python,
+    ]
+    if toolchain_types_in_rules not in ([False, False, False], [True, True, True]):
+        fail("expected the _toolchain_type_in_rules_* features to agree, got {}".format(toolchain_types_in_rules))
 
     # a smoke test on the actual current Bazel version
     if not ge("0.0.1"):
