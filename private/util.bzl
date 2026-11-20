@@ -8,6 +8,7 @@ load(":parse.bzl", "parse_version")
 BAZEL_VERSION = parse_version(version)
 
 def parse_incompatible_env(name, value, default):
+    # type: (str, str | None, bool) -> bool
     """Parses the value of an environment variable toggling an incompatible change.
 
     Args:
@@ -27,6 +28,7 @@ def parse_incompatible_env(name, value, default):
     fail("Invalid value for --repo_env={}: '{}', expected 0 or 1".format(name, value))
 
 def incompatible(name, default):
+    # type: (str, bool) -> bool
     """Returns whether the incompatible change toggled by an environment variable is enabled.
 
     Args:

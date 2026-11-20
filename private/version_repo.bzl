@@ -32,6 +32,7 @@ bzl_library(
     }
     rctx.file("version.bzl", "\n".join([
         "version = '" + native.bazel_version + "'",
+        "# type: dict[str, str]",
         "incompatible_env = " + repr(incompatible_env),
     ]))
     if hasattr(rctx, "repo_metadata"):
