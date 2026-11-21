@@ -21,7 +21,7 @@ jobs:
         id: checkout
         with:
           persist-credentials: false
-      - uses: &sty tamird/sty@c1f42d68aa3c9dbec054edb345cfeb8c248bfba5
+      - uses: &sty tamird/sty@43d266072decb9efc3cca9ada6f0d7eb4047c2e2
         with:
           advisory-pathspecs: |
             *.bzl
