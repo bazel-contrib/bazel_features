@@ -7,7 +7,10 @@ INCOMPATIBLE_ENV_VARS = [
     "BAZEL_INCOMPATIBLE_TOOLCHAIN_TYPES_IN_RULES",
 ]
 
+# TODO(https://github.com/bazelbuild/bazel/issues/32020): Use a native repository context
+# annotation when supported Bazel versions expose it.
 def _version_repo_impl(rctx):
+    # type: (repository_ctx) -> repo_metadata | None
     rctx.file(
         "BUILD.bazel",
         """
@@ -29,6 +32,7 @@ bzl_library(
     }
     rctx.file("version.bzl", "\n".join([
         "version = '" + native.bazel_version + "'",
+        "# type: dict[str, str]",
         "incompatible_env = " + repr(incompatible_env),
     ]))
     if hasattr(rctx, "repo_metadata"):
